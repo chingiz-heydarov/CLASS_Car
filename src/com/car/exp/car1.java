@@ -1,8 +1,8 @@
 package com.car.exp;
 
 public class car1 {
-    int hp;
-    boolean awd;
+    public int hp;
+    public boolean awd;
 
     public static void main(String[] args) {
         car1 bmw = new car1();

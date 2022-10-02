@@ -1,4 +1,4 @@
-package com.car.exp;
+package com.t1.exp;
 
 import java.util.Scanner;
 

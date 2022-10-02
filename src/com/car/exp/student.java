@@ -8,7 +8,9 @@ public class student {
     int ceki;
 
     public static void main(String[] args) {
-        student oglan = new student();
+
+
+student oglan = new student();
         oglan.boy = 180;
         oglan.ceki = 70;
 

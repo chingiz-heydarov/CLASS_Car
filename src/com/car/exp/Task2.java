@@ -11,9 +11,9 @@ public class Task2 {
             int a = console.nextInt();
             b=a;
             if (a > 0 && a % 2 == 0) System.out.println("MUSBET, CUT");
-            else if (a > 0 && a % 2 != 0) System.out.println("MUSBET, TEK");
+            else if (a > 0 ) System.out.println("MUSBET, TEK");
             else if (a < 0 && a % 2 != 0) System.out.println("MENFI, TEK");
-            else if (a < 0 && a % 2 == 0) System.out.println("MENFI, CUT");
+            else if (a < 0 ) System.out.println("MENFI, CUT");
             else System.out.println("reqem sifirdir");
         }while (b!=0);
     }

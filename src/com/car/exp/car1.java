@@ -9,7 +9,7 @@ public class car1 {
         bmw.hp = 286;
         bmw.awd = false;
         if (bmw.awd == true) {
-            System.out.println("the power of e90 335d is " + bmw.hp + " hp, all wd");
+            System.out.println("the power of e90 335xd is " + bmw.hp + " hp, all wd");
         }
         else {
             System.out.println("the power of e90 335d is " +bmw.hp + " hp, rear wd");

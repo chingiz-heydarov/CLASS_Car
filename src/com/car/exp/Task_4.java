@@ -4,39 +4,28 @@ import java.util.Scanner;
 
 public class Task_4 {
     public static void main(String[] args) {
-        while(true) {
-            System.out.println("---------Enter the value: ");
+
+        System.out.println("---------Enter the value: ");
             Scanner console = new Scanner(System.in);
-            int num = console.nextInt();
-            int a = num;
-
-            int b=0;
-            while (num>10) {
-                num = num/10;
-                b++;
-            }
-
-            int x = 0;
-
-            while(x - b <= 0) {
-                int ten_x_p = (int)Math.pow(10, (x + 1));
-                int ten_x = (int)Math.pow(10, x);
-                int ten_b = (int)Math.pow(10, b);
-                int m = a % ten_x_p / ten_x;
-                int z = a / ten_b;
-                a = a%ten_b;
-                --b;
-                ++x;
-                if (x - b >= 1 && z == m) {
-                    System.out.println("Polindrom");
-                }
-
-                if (z != m) {
-                    System.out.println("Polindrom deyil");
-                    break;
+            int a = console.nextInt();
+            if(1<=a && a<=999) {
+                int x, y, z;
+                int w = 1;
+                while (w > 0) {
+                    x = a / 100;
+                    y = (a % 100) / 10;
+                    z = a % 10;
+                    w = x * x + y * y + z * z;
+                    if (w % 10 == 1) {
+                        System.out.println("true");
+                        break;
+                    } else a = w;
                 }
             }
-        }
+            else System.out.println("false");
     }
 }
+
+
+
 

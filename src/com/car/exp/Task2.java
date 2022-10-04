@@ -21,7 +21,7 @@
                     int ten_x_p;
                     int ten_x;
                     while (x-b<=0) {
-
+ 
                         ten_x_p = (int) Math.pow(10, (x + 1));
 
                         ten_x = (int) Math.pow(10, x);

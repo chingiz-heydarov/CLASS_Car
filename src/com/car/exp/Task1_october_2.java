@@ -1,6 +1,8 @@
+package com.car.exp;
 
+import java.util.Scanner;
 
-   public static class Task1_october_2 {
+public  class Task1_october_2 {
 
 
             public static void main (String[]args) {
@@ -48,4 +50,4 @@
                 }
             }
     }
-}
+

@@ -1,5 +1,5 @@
 
-package com.t1.exp;
+package com.task;
 
 import java.util.Scanner;
 

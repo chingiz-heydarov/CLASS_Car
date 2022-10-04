@@ -9,7 +9,7 @@ public class Task_4 {
             int a = console.nextInt();
             if(1<=a && a<=999) {
                 int x, y, z;
-                int w = 1;
+                int w;
                 int c=0;
                 while (c < 100) {
                     x = a / 100;

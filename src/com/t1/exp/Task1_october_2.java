@@ -1,7 +1,9 @@
 
+package com.t1.exp;
 
-   public static class Task1_october_2 {
+import java.util.Scanner;
 
+public  class Task1_october_2 {
 
             public static void main (String[]args) {
                 while (true) {
@@ -11,7 +13,8 @@
                     int a = num;
                     int b = 0;
                     while (num > 10) {
-                        num = num / 10;
+
+                       num = num / 10;
                         b++;
                     }
                     int x = 0;
@@ -35,17 +38,16 @@
 
                             a = a % ten_b;
 
-                        b--;
-                        x++;
+                   b--;
+                   x++;
 
-                        if(x-b>=1 && z==m)System.out.println("Polindrom");
+                   if (x - b >= 1 && z == m) System.out.println("Polindrom");
 
-                        if (z != m) {
-                            System.out.println("Polindrom deyil");
-                            break;
-                        }
-                    }
-                }
-            }
-    }
-}
+                   if (z != m) {
+                       System.out.println("Polindrom deyil");
+                       break;
+                   }
+               }
+           }
+       }
+   }

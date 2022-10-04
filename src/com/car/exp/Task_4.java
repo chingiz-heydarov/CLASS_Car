@@ -17,7 +17,7 @@ public class Task_4 {
                     z = a % 10;
                     w = x * x + y * y + z * z;
                     System.out.println(w);
-                    if (w % 10 == 1) {
+                    if (w == 1) {
                         System.out.println("true");
                         break;
                     } else a = w;

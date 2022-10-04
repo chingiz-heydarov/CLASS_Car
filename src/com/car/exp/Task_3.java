@@ -6,7 +6,8 @@ public class Task_3 {
     public static void main(String[] args) {
         System.out.println("---------Select operation (+,-,*,/): ");
         Scanner sign = new Scanner(System.in);
-        var o = sign.nextLine();
+        var o = sign.next();
+
 
            System.out.print("a=");
 
@@ -18,7 +19,7 @@ public class Task_3 {
         Scanner b = new Scanner(System.in);
         int y = b.nextInt();
 
-        int c = 0;
+        double c = 0;
 
         switch (o) {
             case "+":
@@ -31,7 +32,7 @@ public class Task_3 {
                 c = x * y;
                 break;
             case "/":
-                c = x / y;
+                c =(double) x / y;
                 break;
         }
         System.out.println(c);

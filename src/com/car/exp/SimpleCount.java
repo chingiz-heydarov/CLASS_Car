@@ -5,13 +5,13 @@ public class SimpleCount {
         int a=1;
         while(a<100){
             int b=2;
-            System.out.println(1);
+            if(a<=b) System.out.println(a);
             while(b<a){
+                if(a-b==1)  System.out.println(a);
                 if(a%b!=0){
                     b++;
                 }
                 else break;
-                if(a-b==1)  System.out.println(a);
             }
             a++;
         }

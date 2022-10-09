@@ -11,7 +11,13 @@ public class SevenThree {
             System.out.println("Ikinci reqemi daxil edin");
             Scanner reqem2 = new Scanner(System.in);
             int b = reqem2.nextInt();
-            for(int i=a; i<b; i++)
-            if (i % 21 == 0) System.out.println(i);
+            if(a<b) {
+                for (int i = a; i < b; i++)
+                    if (i % 21 == 0) System.out.println(i);
+            }
+            else{
+                for (int i = b; i < a; i++)
+                    if (i % 21 == 0) System.out.println(i);
+            }
         }
     }

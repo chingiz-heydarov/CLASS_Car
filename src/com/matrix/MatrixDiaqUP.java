@@ -42,6 +42,9 @@ public class MatrixDiaqUP {
                                 System.out.println();
                             }
                             break;
+                        default:
+                            System.out.println("SECIM DUZGUN OLUNMAYIB");
+                            break;
                     }
                     break;
                 case ("s"):
@@ -63,7 +66,13 @@ public class MatrixDiaqUP {
                                 System.out.println();
                             }
                             break;
+                        default:
+                        System.out.println("SECIM DUZGUN OLUNMAYIB");
+                        break;
                     }
+                    break;
+                default:
+                    System.out.println("SECIM DUZGUN OLUNMAYIB");
                     break;
             }
         }

@@ -5,10 +5,10 @@ import java.util.Scanner;
 public class Saat {
     public static void main(String[] args) {
         while(true) {
-            System.out.println("---------Enter hours: ");
+            System.out.println("Saatlari daxil edin:");
             Scanner console = new Scanner(System.in);
             int h = console.nextInt();
-            System.out.println("---------Enter minutes: ");
+            System.out.println("Deqiqeleri daxil edin:");
             Scanner consol = new Scanner(System.in);
             int min = consol.nextInt();
             int m =  min / 5, angle = 0;
@@ -29,12 +29,12 @@ public class Saat {
                     else angle=180;
                 }
             }
-            else{                                             // h==m
+            else{
                 if(min/2 > 6*(min%5)) angle=min/2-6*(min%5);
                 else if(min/2 < 6*(min%5)) angle=6*(min%5)-min/2;
                 else angle=0;
             }
-            System.out.println("angle="+angle);
+            System.out.println("arasindaki bucaq="+angle);
         }
     }
 }

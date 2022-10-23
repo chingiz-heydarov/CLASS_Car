@@ -2,32 +2,35 @@ package com.audi;
 
 public class Say {
     public static void main(String[] args) {
-        int a[]={1,2,3,4,5,6,7};
+        int a[] = {1, 2, 3, 4};
 
-        int i ,j=0, Null=0 ,Count, say=5, l=a.length-1;
+        int i, j = 0, bos = 0, count=0, say = 2, l = a.length ;
 
-boolean result=true;
-        do{
-            Count=0;
+        boolean result = true;
+//        LOOP:do {
+//            int count = 0;
 
-            for(i=j; Count<=say; i++) {
-               // if (i == l) i = 0;
+            for (i = 0; ; i++) {
+                 if (i == l) i = 0;
+
+                //boslarin uzerinden kecirik
                 if (a[i] == 0) {
-                    Null++;
                     continue;
-                }
-                else Count++;
+                } else count++;
 
-                if (Count == say) {
+                //
+                if (count == say) {
                     a[i] = 0;
-                    j = i+1;
-                    break;
+                    bos++;
+                    count=0;
+//                    j = i + 1;
+//                    break;
                 }
-                if (i == l) i = 0;
-                 if(Null-Count==l-1) result=false;
+
+                if (bos==l-1) break ;
             }
-            System.out.println(Null);
-        }while(result);
-        for(int z: a) System.out.print(z+"\t");
+            System.out.println(bos);
+//        } while (result);
+        for (int z : a) System.out.print(z + "\t");
     }
 }

@@ -3,7 +3,7 @@ package com.oktyabr29;
 public class StringMetod {
     public static void main(String[] args) {
         String s[] = {"Au","di","av", "aav","Av","ant"};
-        String str = "AudiAvantAv", sum;
+        String str = "AudiAvant", sum;
         int i,j,l=s.length-1;
   outer:   for(i=0;i<l-1;i++){
                 sum=s[i];

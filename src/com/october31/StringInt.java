@@ -1,10 +1,35 @@
 package com.october31;
 
+import java.util.Random;
+import java.util.Scanner;
+
 public class StringInt {
     public static void main(String[] args) {
-        String s = "abcdefgh";
-        int[] a = {4, 7, 3, 1, 5, 0, 6, 2};
-        funk(a, s);
+        while (true) {
+            System.out.println("Soz daxil edin: ");
+            Scanner sc = new Scanner(System.in);
+            String s = sc.next();
+            int[] a = new int[s.length()];
+            randMass(a);
+            funk(a, s);
+        }
+    }
+
+    public static void randMass(int a[]) {                   //return array???
+
+        Random r = new Random();
+
+        outer:
+        for (int i = 0; i < a.length; i++) {
+            int x = r.nextInt(a.length);
+            for (int j = i; j >= 0; j--) {
+                if (x == a[j]) {
+                    i--;
+                    continue outer;
+                }
+                a[i] = x;
+            }
+        }
     }
 
     public static void funk(int[] a, String s) {       // ?????
@@ -21,6 +46,6 @@ public class StringInt {
         }
         for (char z : nevv)
             sum += z + " ";
-        System.out.println(sum);//return array?
+        System.out.println(sum);          //return array?
     }
 }

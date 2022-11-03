@@ -20,6 +20,8 @@ public class Object1 {
             massiv[i].hp = power[i];
         }
 
+         System.out.println("Obyektlerin sayi: "+car.size);
+
         int count;
 
         do {
@@ -44,7 +46,10 @@ public class Object1 {
 class car {
     String model;
     int hp;
-
+    static int size;
+    car(){
+        size++;
+    }
 
  /*   public car(String x, int y) {
         this.model = x;
@@ -52,13 +57,7 @@ class car {
     }
 
 
-
-  static int count;
-
-   static int i=0;
-    car(){
-    count++;
-       }
+ static int i=0;
 
        car(){
            massiv[i]=new car();

@@ -36,9 +36,8 @@ public class Object1 {
             }
         } while (count != 0);
 
-        for (int i = 0; i < 5; i++) {
-            System.out.println(massiv[i].model + " " + massiv[i].hp);
-        }
+        for (int i = 0; i < massiv.length; i++) System.out.println(massiv[i].model + " " + massiv[i].hp);
+
     }
 }
 

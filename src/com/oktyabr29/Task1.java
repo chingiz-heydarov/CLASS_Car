@@ -1,8 +1,8 @@
 package com.oktyabr29;
 
-public class tsk1 {
+public class Task1 {
     public static void main(String[] args) {
-        String w[] = {"ronaldo", "rivaldo", "rivelino", "romario"};
+        String w[] = {"cool","lock","cook"};
         String str = w[0];
         for (int j = 1; j < w.length; j++) {
             for (int i = 0; i < str.length(); i++) {
@@ -10,7 +10,7 @@ public class tsk1 {
                 for (int k = 0; k < w[j].length(); k++) {
                     if (str.charAt(i) == w[j].charAt(k)) break;
                     count++;
-                    if (count == w[j].length()) str = str.replace(str.charAt(i), '0');
+                    if (count == w[j].length()) str = str.replaceFirst(str.substring(i,i+1), "0");
                 }
             }
         }

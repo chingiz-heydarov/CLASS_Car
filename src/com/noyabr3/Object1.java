@@ -5,7 +5,7 @@ public class Object1 {
 
         String[] vehicle = {"vw passat", "seat leon", "vw jetta", "vw golf", "skoda octavia"};
         int[] power = {220, 180, 170, 235, 185};
-        car[] massiv = new car[power.length];
+        Car[] massiv = new Car[power.length];
 
    /*   massiv[0] = new car("vw passat", 220);
         massiv[1] = new car("seat leon", 180);
@@ -15,12 +15,12 @@ public class Object1 {
 
 
         for (int i = 0; i < massiv.length; i++) {
-            massiv[i] = new car();
-            massiv[i].model = vehicle[i];
-            massiv[i].hp = power[i];
+            Car nCar= new Car();
+            nCar.hp=power[i];
+            nCar.model=vehicle[i];
+            massiv[i]=nCar;
         }
-
-         System.out.println("Obyektlerin sayi: "+car.size);
+         System.out.println("Obyektlerin sayi: "+ Car.size);
 
         int count;
 
@@ -28,7 +28,7 @@ public class Object1 {
             count = 0;
             for (int i = 0; i < massiv.length-1; i++) {
                 if (massiv[i].hp > massiv[i + 1].hp) {
-                    car b = massiv[i];
+                    Car b = massiv[i];
                     massiv[i] = massiv[i + 1];
                     massiv[i + 1] = b;
                     count++;
@@ -36,31 +36,8 @@ public class Object1 {
             }
         } while (count != 0);
 
-        for (int i = 0; i < massiv.length; i++) System.out.println(massiv[i].model + " " + massiv[i].hp);
+        for (int i = 0; i < massiv.length; i++)
+            System.out.println(massiv[i].model + " " + massiv[i].hp);
 
     }
-}
-
-
-class car {
-    String model;
-    int hp;
-    static int size;
-    car(){
-        size++;
-    }
-
- /*   public car(String x, int y) {
-        this.model = x;
-        this.hp = y;
-    }
-
-
- static int i=0;
-
-       car(){
-           massiv[i]=new car();
-        i++;
-       }                            */
-
 }

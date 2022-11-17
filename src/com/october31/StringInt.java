@@ -10,12 +10,13 @@ public class StringInt {
             Scanner sc = new Scanner(System.in);
             String s = sc.next();
             int[] a = new int[s.length()];
-            randMass(a);
-            funk(a, s);
+            int[] b=randMass(a);
+
+            funk(b, s);
         }
     }
 
-    public static void randMass(int a[]) {                   //return array???
+    public static int[] randMass(int a[]) {                   //return array???
 
         Random r = new Random();
 
@@ -30,6 +31,7 @@ public class StringInt {
                 a[i] = x;
             }
         }
+        return a;
     }
 
     public static void funk(int[] a, String s) {       // ?????

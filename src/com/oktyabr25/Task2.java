@@ -2,7 +2,7 @@ package com.oktyabr25;
 
 public class Task2 {
     public static void main(String[] args) {
-        String sent ="eeinen weissss sternshaftxxxxx ";
+        String sent ="sssnnnaaa";
 
         int i,j,old_count=1,count=1, l= sent.length();
         char sent_i;
@@ -15,19 +15,20 @@ public class Task2 {
                 if (sent_i == sent.charAt(j))
                     count++;
             }
-            if(count>=old_count){
                 if(count>old_count) {
                     old_count = count;
                     pot_i = "" + sent.charAt(i) + "";
+
                 }
                 if(count==old_count){
                     pot_i=pot_i+sent.charAt(i);
                 }
-            }
+
         }
 
 
-        if(pot_i.length()==1) System.out.println("Cumlede en cox olan '"+pot_i+"' herfidir, "+old_count+" defe tekrerlanir.");
+        if(pot_i.length()==1)
+            System.out.println("Cumlede en cox olan '"+pot_i+"' herfidir, "+old_count+" defe tekrerlanir.");
            else{
                pot_i=pot_i.substring(1);
                System.out.print("Cumlede en cox olan ");

@@ -12,6 +12,41 @@ abstract class Triangle extends Fiqure{
 
 }
 
+abstract class Dord extends Fiqure{
+    int a;
+    int b;
+    int c;
+    int d;
+}
+
+class Parallel extends Dord{
+    Parallel(int a, int b, int c, int d){
+        if((a==b && c==d)||(a==c && b==d)||(a==d && b==c)){
+super.a=a;
+super.b=b;
+        }
+    }
+
+    @Override
+    public double area() {
+        return 0;
+    }
+}
+
+
+class Square extends Parallel{
+    int d1;
+    int d2;
+    Square(int a, int b, int d1, int d2){
+        super.a=a;
+        super.b=b;
+        this.d1=d1;
+        this.d2=d2;
+    }
+}
+
+
+
 class Duzbucaq extends Triangle{
     Duzbucaq(int a, int b, int c){
         if(a*a+b*b==c*c) {

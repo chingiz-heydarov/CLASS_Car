@@ -9,10 +9,6 @@ public class ChipTuning {
         Brand VAG = new Brand("Skoda", new Chassis());
         Brand Bmw = new Brand("BMW", new Chassis());
 
-        Awd Quattro = new Awd("Torsen", true);
-        Awd awd = new Awd("Haldex", false);
-        Awd xdrive = new Awd("Rwd", true);
-
         Engine CJSA = new Engine(180, 250, 1800);
         Engine CREC = new Engine(330, 440, 3000);
         Engine N20b20 = new Engine(245, 350, 2000);
@@ -23,10 +19,15 @@ public class ChipTuning {
         Gearbox DQ381 = new Gearbox(7, "BorgWarner", "DCT");
         Gearbox DL501 = new Gearbox(7, "BorgWarner", "DCT");
 
+        Awd Quattro = new Awd("Torsen", true);
+        Awd awd = new Awd("Haldex", false);
+        Awd xdrive = new Awd("Rwd", true);
+
         Specs B_series = new Specs(11);
         Specs N_series = new Specs(10);
         Specs EA888= new Specs(9);
         Specs EA837= new Specs(11);
+
 
         Model Audi_A7 = new Model(Audi.brandName, "A7", CREC, DL501, Quattro, EA837);
         Model f30 = new Model(Bmw.brandName, "328i", N20b20, ZF8HP45, xdrive, N_series);

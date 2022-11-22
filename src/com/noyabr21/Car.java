@@ -6,12 +6,9 @@ public abstract class Car {
     Engine engine;
     Gearbox gearbox;
 
-
-
     public void Remap(){
             int stage1=(engine.tq-engine.hp)*10/Specs.ratio;
             engine.hp+=stage1;
-            //System.out.println(engine.hp);
     }
 
     public void WheelPower(){

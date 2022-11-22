@@ -16,7 +16,7 @@ public class ChipTuning {
 
         Gearbox ZF8HP45 = new Gearbox(8, "ZF", "Hydro");
         Gearbox Getrag = new Gearbox(6, "Getrag", "DRY");
-        Gearbox DQ381 = new Gearbox(7, "BorgWarner", "DCT");
+        Gearbox DQ250 = new Gearbox(6, "BorgWarner", "DCT");
         Gearbox DL501 = new Gearbox(7, "BorgWarner", "DCT");
 
         Awd Quattro = new Awd("Torsen", true);
@@ -31,7 +31,7 @@ public class ChipTuning {
 
         Model Audi_A7 = new Model(Audi.brandName, "A7", CREC, DL501, Quattro, EA837);
         Model f30 = new Model(Bmw.brandName, "328i", N20b20, ZF8HP45, xdrive, N_series);
-        Model Octavia = new Model(VAG.brandName, "Octavia_A7", CJSA, DQ381, awd, EA888);
+        Model Octavia = new Model(VAG.brandName, "Octavia_A7", CJSA, DQ250, awd, EA888);
         Model f20 = new Model(Bmw.brandName, "140i", B58B30, Getrag, xdrive, B_series);
 
         Car[] novbe = new Car[4];

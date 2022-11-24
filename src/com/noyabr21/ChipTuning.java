@@ -9,10 +9,6 @@ public class ChipTuning {
         Brand VAG = new Brand("Skoda", new Chassis());
         Brand Bmw = new Brand("BMW", new Chassis());
 
-        Awd Quattro = new Awd("Torsen", true);
-        Awd awd = new Awd("Haldex", false);
-        Awd xdrive = new Awd("Rwd", true);
-
         Engine CJSA = new Engine(180, 250, 1800);
         Engine CREC = new Engine(330, 440, 3000);
         Engine N20b20 = new Engine(245, 350, 2000);
@@ -20,17 +16,22 @@ public class ChipTuning {
 
         Gearbox ZF8HP45 = new Gearbox(8, "ZF", "Hydro");
         Gearbox Getrag = new Gearbox(6, "Getrag", "DRY");
-        Gearbox DQ381 = new Gearbox(7, "BorgWarner", "DCT");
+        Gearbox DQ250 = new Gearbox(6, "BorgWarner", "DCT");
         Gearbox DL501 = new Gearbox(7, "BorgWarner", "DCT");
+
+        Awd Quattro = new Awd("Torsen", true);
+        Awd awd = new Awd("Haldex", false);
+        Awd xdrive = new Awd("Rwd", true);
 
         Specs B_series = new Specs(11);
         Specs N_series = new Specs(10);
         Specs EA888= new Specs(9);
         Specs EA837= new Specs(11);
 
+
         Model Audi_A7 = new Model(Audi.brandName, "A7", CREC, DL501, Quattro, EA837);
         Model f30 = new Model(Bmw.brandName, "328i", N20b20, ZF8HP45, xdrive, N_series);
-        Model Octavia = new Model(VAG.brandName, "Octavia_A7", CJSA, DQ381, awd, EA888);
+        Model Octavia = new Model(VAG.brandName, "Octavia_A7", CJSA, DQ250, awd, EA888);
         Model f20 = new Model(Bmw.brandName, "140i", B58B30, Getrag, xdrive, B_series);
 
         Car[] novbe = new Car[4];

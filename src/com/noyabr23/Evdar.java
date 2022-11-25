@@ -6,12 +6,13 @@ class Evdar extends Human implements Fat, Routine {
 
     boolean lover;
 
-    Evdar(int age, int deathCount, int children, boolean lover, boolean qaynana) {
+    Evdar(int age, String name, int deathCount, int children, boolean lover, boolean qaynana) {
         this.age = age;
         this.lover = lover;
         this.children = children;
         this.qaynana = qaynana;
         this.deathCount=deathCount;
+        this.name=name;
     }
 
     @Override

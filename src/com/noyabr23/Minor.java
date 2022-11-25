@@ -1,12 +1,13 @@
 package com.noyabr23;
 
 class Minor extends Office implements Goodhabit {
-    Minor(int age, int deathCount, int maas, boolean holiday, int workhours) {
+    Minor(int age, String name, int deathCount, int maas, boolean holiday, int workhours) {
         this.age = age;
         this.maas = maas;
         this.holiday = holiday;
         this.workhours = workhours;
         this.deathCount=deathCount;
+        this.name=name;
     }
 
     @Override

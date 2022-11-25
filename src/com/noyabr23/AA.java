@@ -7,7 +7,7 @@ class AA extends Human implements BadHabit, Routine, Fat {
     boolean reis;
     boolean bagBilge;
 
-    AA(int age, int deathCount, int staj, boolean lexusLX570, boolean personalRoom, boolean reis, boolean bagBilge) {
+    AA(int age, String name, int deathCount, int staj, boolean lexusLX570, boolean personalRoom, boolean reis, boolean bagBilge) {
         this.age = age;
         this.staj = staj;
         this.lexusLX570 = lexusLX570;
@@ -15,6 +15,7 @@ class AA extends Human implements BadHabit, Routine, Fat {
         this.reis = reis;
         this.bagBilge = bagBilge;
         this.deathCount=deathCount;
+        this.name=name;
     }
 
     @Override

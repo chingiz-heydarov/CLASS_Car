@@ -5,12 +5,13 @@ class Fehle extends Worker implements Doner, BadHabit {
     boolean sigorta;
     boolean outside;
 
-    Fehle(int age, int deathCount, int workHour, boolean sigorta, boolean outside) {
+    Fehle(int age, String name, int deathCount, int workHour, boolean sigorta, boolean outside) {
         this.age = age;
         this.workHour = workHour;
         this.sigorta = sigorta;
         this.outside = outside;
         this.deathCount=deathCount;
+        this.name=name;
     }
 
     @Override

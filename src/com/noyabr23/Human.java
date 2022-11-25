@@ -2,6 +2,8 @@ package com.noyabr23;
 
 public abstract class Human {
     int age;
+
+    String name;
     int deathCount;
 }
 

@@ -9,7 +9,23 @@ public class Player {
 
     Player(String name, LocalDate birthday){
         this.name=name;
-        this.birthday=LocalDate.of(int year, int month, int day);
-        birthday=birthday.format(DateTimeFormatter.ofPattern("dd MM yyyy"));
+        this.birthday=birthday;
+//        birthday=birthday.format(DateTimeFormatter.ofPattern("dd MM yyyy"));
     }
+
+
+    Player(String name, String birthday){
+        this.name=name;
+        this.birthday=LocalDate.parse(birthday,DateTimeFormatter.ofPattern("dd MM yyyy"));
+    }
+
+//    LocalDate  ofLocal (int year, int month, int day){
+//
+//        return LocalDate.of(year,month,day);
+//     }
+
+//    public static void main(String[] args) {
+//        new Player("",LocalDate.now()).ofLocal(int year, int month, int day)
+//    }
+
 }

@@ -1,18 +1,22 @@
 package com.noyabr29ders;
 
-import java.util.Date;
-
 public class Task1 {
     public static void main(String[] args) {
-        X aa=new X("aa");
-        X bb=new X("bb");
-        X cc=new X("cc");
-        X dd=new X("dd");
+        Car aa=new Car("aa");
+        Car bb=new Car("bb");
+        Car cc=new Car("cc");
+        Car dd=new Car("dd");
+
+        Box<Car> box1= new Box<>(aa);
+        Box<Car> box2= new Box<>(bb);
+        Box<Car> box3= new Box<>(cc);
+        Box<Car> box4= new Box<>(dd);
 
 
-        X[] f= {aa,bb,cc,dd};
 
-        for( X ff : f){
+        Box[] f= {box1,box2,box3,box4};
+
+        for( Box ff : f){
             System.out.println(ff.toString());
         }
     }

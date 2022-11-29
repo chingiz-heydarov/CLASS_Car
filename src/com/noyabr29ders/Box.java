@@ -5,4 +5,9 @@ public class Box <X>{
     Box( X thing){
         this.thing=thing;
     }
+
+    @Override
+    public String toString() {
+        return thing.toString();
+    }
 }

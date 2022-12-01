@@ -10,8 +10,7 @@ public class Vinumber {
         Car Volvo=new Car("Volvo XC70", "YV1BZ95H6D1189861", LocalDate.of(2013, 10,10));
         Car Infiniti_FX=new Car("Infiniti_FX50","JNRBS1MW3CM650137", LocalDate.of(2014, 10, 10));
         Car Infiniti_EX=new Car("Infiniti_EX37","JNRBJ0HR6DM240158", LocalDate.of(2013, 10, 10));
-        Car Skoda_Superb=new Car("Skoda_Superb MK3","TMBLJ9NP7F7610636", LocalDate.of(2017, 10,10));
-
+        Car Skoda_Superb=new Car("Skoda_Superb ","TMBLJ9NP7F7610636", LocalDate.of(2017, 10,10));
 
 
         Car[] cc= { BMW_e87, Volvo, Infiniti_FX, Infiniti_EX,  Skoda_Superb };

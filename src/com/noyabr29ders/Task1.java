@@ -12,8 +12,6 @@ public class Task1 {
         Box<Car> box3= new Box<>(cc);
         Box<Car> box4= new Box<>(dd);
 
-
-
         Box[] f= {box1,box2,box3,box4};
 
         for( Box ff : f){

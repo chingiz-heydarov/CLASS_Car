@@ -1,5 +1,5 @@
 package com.ders17;
-
+/*
 abstract class Fiqure {
     public abstract double area();
 }
@@ -37,7 +37,7 @@ super.b=b;
 class Square extends Parallel{
     int d1;
     int d2;
-    Square(int a, int b, int d1, int d2){
+  //  Square(int a, int b, int d1, int d2){
         super.a=a;
         super.b=b;
         this.d1=d1;
@@ -87,6 +87,6 @@ class BerYan extends Triangle{
 
         return Math.sqrt(p*(p-a)*(p-b)*(p-a));
     }
-}
+}  */
 
 

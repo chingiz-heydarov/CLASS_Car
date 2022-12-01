@@ -16,7 +16,7 @@ public class Player {
 
     Player(String name, String birthday){
         this.name=name;
-        this.birthday=LocalDate.parse(birthday,DateTimeFormatter.ofPattern("dd MM yyyy"));
+        this.birthday=LocalDate.parse(birthday,DateTimeFormatter.ofPattern("dd MM yyyy"));    // string=>date
     }
 
 //    LocalDate  ofLocal (int year, int month, int day){

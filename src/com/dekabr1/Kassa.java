@@ -51,24 +51,15 @@ public class Kassa {
         Remont<Awd> mercedes = new Remont<>(matic4);
         Remont<Awd> landrover = new Remont<>(TerrainResponse);
 
+
+        System.out.println(nissan.cashOfService());
+        System.out.println(mitsu.cashOfService());
+        System.out.println(e90.cashOfService());
+        System.out.println();
+        System.out.println();
+        System.out.println();
+
         }
-    public void Cash(Remont remont){
-      /*
-        if(chain) cash+=500;
-        if(fazaregulyator) cash+=700;                    //engine
-        if(pistons) cash+=800*silindr;
-        cash*=cash*head;   */
 
-     /*   if(hydroblok) cash+=1000;
-        if(hydrotransformator) cash+=500;                 //gearbox
-        if(mechanics) cash+=2500;
-        if(clutch) cash+=1500;     */
-
-     /*  if(mufta) cash+=400;
-        if(razdatka) cash+=600;                           // awd
-        if(shrus) cash+=1000;    */
-
-
-    }
     }
 

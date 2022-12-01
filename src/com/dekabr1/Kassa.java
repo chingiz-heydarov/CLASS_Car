@@ -11,21 +11,21 @@ public class Kassa {
         Engine n63b44=new Engine(8, 2, false, false, true);
         Engine ea837= new Engine(6, 2, false, false, true);
 
-        Gearbox jf011e = new Gearbox(true, "belt");
-        Gearbox multitronic= new Gearbox(true, "chain");
-        Gearbox gm6t30= new Gearbox(false, true, true);
-        Gearbox g7tronic=new Gearbox(true, false, false);
-        Gearbox tf80sc= new Gearbox(true, false, false);
-        Gearbox OAM= new Gearbox(true, true);
-        Gearbox DCT6= new Gearbox(true, true);
-        Gearbox DQ250= new Gearbox(false, true, 3);
-        Gearbox DP0= new Gearbox(true, false, false);
+        Gearbox jf011e = new Gearbox(false, false, true, false);
+        Gearbox multitronic= new Gearbox(true, false, true, false);
+        Gearbox gm6t30= new Gearbox(true, true, true, false);
+        Gearbox g7tronic=new Gearbox(true, false, false, false);
+        Gearbox tf80sc= new Gearbox(true, false, false, false);
+        Gearbox OAM= new Gearbox(true, false, true, true);
+        Gearbox DCT6= new Gearbox(true, false, false, true);
+        Gearbox DQ250= new Gearbox(false, false, false, true);
+        Gearbox DP0= new Gearbox(true, true, false, false);
 
-        Awd parttime= new Awd(true, false);
+        Awd parttime= new Awd(false, true, false);
         Awd xdrive= new Awd(true, false, true);
-        Awd matic4 = new Awd(false, true, false);
-        Awd haldex = new Awd(true);
-        Awd TerrainResponse = new Awd(true, false);
+        Awd matic4 = new Awd(true, true, false);
+        Awd haldex = new Awd(true, false, false);
+        Awd TerrainResponse = new Awd(false, true, false);
 
         Remont<Engine> ea888 = new Remont<>(cdab);
         Remont<Engine> e90= new Remont<>(n47d20);

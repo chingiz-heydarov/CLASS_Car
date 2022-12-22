@@ -69,6 +69,10 @@ public class Maint {
         Scanner scan = new Scanner(System.in);
         int sbala = sc.nextInt();
 
-        System.out.println(ctemp.balans-ct.balans);
+        ctemp.balans=ctemp.balans-sbala;
+        ct.balans= ct.balans+sbala;
+
+        System.out.println("Gonderen kartin nomresi "+ctemp.balans);
+        System.out.println("Gonderilen kartin balansi "+ct.balans);
     }
 }

@@ -2,6 +2,7 @@ package com.dekabr29ders;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.function.Consumer;
 
 public class Main {
     public static void main(String[] args) {
@@ -19,18 +20,41 @@ public class Main {
         vv.add(e);
 
         LocalDate today = LocalDate.now();
+//
+//        Consumer<User> consumer = x -> {
+//            if (today.isBefore(x.expdate)) {
+//                System.out.println(x.name+"\t"+ x.surname);
+//            }
+//        };
+//
+        Consumer<User> consumer = new Consumer<User>() {
+            @Override
+            public void accept(User user) {
+                if (today.isBefore(user.expdate)) {
+                System.out.println(user.name+"\t"+ user.surname);
+            }
 
-        Test test = (User) -> System.out.println(User.name+"\t"+ User.surname);
+        }};
+        vv.forEach(consumer);
+
+
+
+
+
+    /*    Test test = (User) -> System.out.println(User.name+"\t"+ User.surname);
 
         for (User z : vv) {
             if (today.isBefore(z.expdate)) {
                 test.expire(z);
             }
-
-
-        }
+        }  */
     }
 }
+
+//@FunctionalInterface
+//public interface Consumer<T> {
+//    void accept(T t);
+//}
 interface Test{
     void expire(User u);
 }

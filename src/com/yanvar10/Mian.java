@@ -13,6 +13,7 @@ public class Mian {
         User e = new User("Ej", "Ekov", 19, 4.9, Currency.EUR);
 
         ArrayList<User> users=new ArrayList<>();
+
         users.add(a);
         users.add(b);
         users.add(c);
@@ -21,20 +22,12 @@ public class Mian {
 
         ArrayList<User> sort=new ArrayList<>();
 
-
-        users.stream().filter(age->age.age>17).filter(cash->cash.pa>=20).forEach(sort::add);//.forEach(sort::add);
+        users.stream().filter(age->age.age>17).filter(cash->cash.pa>=20).forEach(sort::add);
 
         for (User z: sort) {
-            //System.out.println(z.name);
             new Card(z.name+z.surname, LocalDate.now().plusYears(3));
-            System.out.println(new Card(z.name+z.surname, LocalDate.now().plusYears(3)).holder);
-            System.out.println(new Card(z.name+z.surname, LocalDate.now().plusYears(3)).expdate);
+            System.out.println(new Card(z.name+" "+z.surname, LocalDate.now().plusYears(3)).holder);
+            System.out.println(new Card(z.name+" "+z.surname, LocalDate.now().plusYears(3)).expdate);
         }
-
-
-
-
-
-
     }
 }

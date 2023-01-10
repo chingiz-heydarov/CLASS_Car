@@ -12,8 +12,8 @@ public class Main {
         //   A a= (x)-> x.length();             //Lyabmda    (1)
         //   System.out.println(a.word(s));
 
-        //   A a= String::length;              //Referens metod  (2)
-        //   System.out.println(a.word(s));
+           A a= String::length;              //Referens metod  (2)
+           System.out.println(a.word(s));
 
 
         //  B bb = new B();                    //Non-static metod (3)

@@ -1,8 +1,7 @@
-package com;
+package com.dekabr22ders;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Scanner;
 
 public class Maint {

@@ -19,7 +19,6 @@ public class Intellekt {
         a.add(new Biznes(50, 108, true));
         a.add(new Biznes(33, 99, true));
 
-
         int count;
         do {
             count = 0;

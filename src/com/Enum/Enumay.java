@@ -1,6 +1,4 @@
-package com.Enum;
-
-import com.task.Task1October2;
+/*package com.Enum;
 
 import java.util.Scanner;
 
@@ -28,18 +26,10 @@ public class Enumay {
             for (Month z : mm) {
                 if (z.number == ay) {
                     switch (dil) {
-                        case EN:
-                            System.out.println(z);
-                            break;
-                        case AZ:
-                            System.out.println(z.az);
-                            break;
-                        case RU:
-                            System.out.println(z.ru);
-                            break;
-                        case TR:
-                            System.out.println(z.tr);
-                            break;
+                        case EN -> System.out.println(z);
+                        case AZ -> System.out.println(z.az);
+                        case RU -> System.out.println(z.ru);
+                        case TR -> System.out.println(z.tr);
                     }
                     System.out.println("---------------------------------------------------------");
                 }
@@ -50,15 +40,11 @@ public class Enumay {
 }
 
 enum Language {
-    AZ,
-    EN,
-    TR,
-    RU
+    AZ, EN, TR, RU;
 }
 
 enum Month {
-    JANUARY(1, "Yanvar", "Январь", "Ocak"),
-    FEBRUARY(2, "Fevral", "Февраль", "Subat"),
+    JANUARY(1, "Yanvar", "Январь", "Ocak"), FEBRUARY(2, "Fevral", "Февраль", "Subat"),
     MARCH(3, "Mart", "Март", "Mart"),
     APRIL(4, "Aprel", "Апрель", "Nisan"),
     MAY(5, "May", "Май", "Mayis"),
@@ -70,8 +56,10 @@ enum Month {
     NOVEMBER(11, "Noyabr", "Ноябрь", "Kasim"),
     DECEMBER(12, "Dekabr", "Декабрь", "Aralik");
 
-    int number;
-    String az, ru, tr;
+    final int number;
+    final String az;
+    final String ru;
+    final String tr;
 
 
     Month(int number, String az, String ru, String tr) {
@@ -82,3 +70,4 @@ enum Month {
     }
 
 }
+*/

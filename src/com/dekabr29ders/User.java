@@ -1,8 +1,9 @@
 package com.dekabr29ders;
 
 import java.time.LocalDate;
+import java.util.function.Consumer;
 
-public class User {
+public class User{
     String name;
     String surname;
     LocalDate birthday;
@@ -13,4 +14,7 @@ public class User {
         this.birthday=birthday;
         this.expdate=expdate;
     }
+
+
+
 }

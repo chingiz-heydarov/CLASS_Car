@@ -20,7 +20,7 @@ public class Man2 {
         b.add(1);
         b.add(2);
 
-        Object[] c =a.stream().filter(b::contains).sorted().toArray();
+        Object[] c =a.stream().filter(b::contains).sorted().distinct().toArray();
         for (Object z: c
              ) {
             System.out.println(z);

@@ -7,7 +7,7 @@ import java.time.LocalDate;
 public class Elan {
 
     int number;
-    Brand_Name brand_name;
+
     int year;
     double engine_size;
     boolean auto_gearbox;
@@ -16,10 +16,12 @@ public class Elan {
     int price;
     int mileage;
 
-    Elan(int number, Brand_Name brand_name,int year, double engine_size,Body kuzov,boolean awd,int price,int mileage, boolean auto_gearbox){
+    Brand brand;
+
+    Elan(Brand brand, int number, int year, double engine_size, Body kuzov,boolean awd,int price,int mileage, boolean auto_gearbox){
         this.number=number;
         this.auto_gearbox=auto_gearbox;
-        this.brand_name=brand_name;
+        this.brand=brand;
         if(year>1970 && year<2023) {
             this.year = year;
         }
@@ -36,17 +38,11 @@ public class Elan {
     }
 }
 
-enum Brand_Name{
-    VOLKSWAGEN{
-        Volkswagen_Models volkswagen_models;
-    },
-    TOYOTA,
-    AUDI;
-    Volkswagen_Models volkswagen_models;
-    Audi_Models audi_models;
-    Toyota_Models toyota_models;
 
-}
+
+
+
+
 
 
 enum Volkswagen_Models{

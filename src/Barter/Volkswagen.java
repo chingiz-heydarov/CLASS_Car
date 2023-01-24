@@ -2,12 +2,13 @@ package Barter;
 
 class Volkswagen extends Brand{
 
+public static  String brandName;
 
-    public Volkswagen_Models modelName;
+Volkswagen_Models modelName;
+
     Volkswagen(String brandName, Volkswagen_Models modelName){
         this.modelName=modelName;
-        Brand.brandName="Volkswagen";
-
+        Volkswagen.brandName ="Volkswagen";
     }
 }
 

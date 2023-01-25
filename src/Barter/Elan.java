@@ -1,7 +1,6 @@
 package Barter;
 
 
-
 import java.time.LocalDate;
 
 public class Elan {
@@ -37,15 +36,25 @@ public class Elan {
         this.mileage=mileage;
     }
 
-
-    public String toString(){
-        return
+    @Override
+    public String toString() {
+        return "Elan{" +
+                "number=" + number +
+                ", year=" + year +
+                ", engine_size=" + engine_size +
+                ", auto_gearbox=" + auto_gearbox +
+                ", kuzov=" + kuzov +
+                ", awd=" + awd +
+                ", price=" + price +
+                ", mileage=" + mileage +
+                ", brand=" + brand +
+                '}';
     }
-
 }
 
-
-
+enum Marka{
+    VOLKSWAGEN,TOYOTA,AUDI,INFINITI,BMW,HONDA;
+}
 
 
 enum Body{

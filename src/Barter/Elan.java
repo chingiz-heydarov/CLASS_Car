@@ -6,27 +6,16 @@ import com.yanvar5ders.B;
 import java.time.LocalDate;
 
 public class Elan {
-
-    int number;
-
-    int year;
+    int number, year, price, mileage;
     double engine_size;
-    boolean auto_gearbox;
+    boolean auto_gearbox, awd;
     Body kuzov;
-    boolean awd;
-    int price;
-    int mileage;
-
     FuelType fuelType;
-
     Brand brand;
-
-    Barter variant1;
-    Barter variant2;
-    Barter variant3;
+    Barter variant1, variant2, variant3;
 
     Elan(Brand brand, int number, int year, double engine_size, Body kuzov,
-         boolean awd,int price,int mileage, boolean auto_gearbox, FuelType fuelType, Barter b1){
+         boolean awd, int price,int mileage, boolean auto_gearbox, FuelType fuelType, Barter b1){
         this.number=number;
         this.auto_gearbox=auto_gearbox;
         this.brand=brand;

@@ -1,6 +1,8 @@
 package Barter;
 
 
+import com.yanvar5ders.B;
+
 import java.time.LocalDate;
 
 public class Elan {
@@ -15,9 +17,16 @@ public class Elan {
     int price;
     int mileage;
 
+    FuelType fuelType;
+
     Brand brand;
 
-    Elan(Brand brand, int number, int year, double engine_size, Body kuzov,boolean awd,int price,int mileage, boolean auto_gearbox){
+    Barter variant1;
+    Barter variant2;
+    Barter variant3;
+
+    Elan(Brand brand, int number, int year, double engine_size, Body kuzov,
+         boolean awd,int price,int mileage, boolean auto_gearbox, FuelType fuelType, Barter b1){
         this.number=number;
         this.auto_gearbox=auto_gearbox;
         this.brand=brand;
@@ -34,7 +43,59 @@ public class Elan {
             this.engine_size = engine_size;
         }
         this.mileage=mileage;
+        this.fuelType=fuelType;
+        this.variant1=b1;
     }
+
+
+    Elan(Brand brand, int number, int year, double engine_size, Body kuzov,boolean awd,int price,
+         int mileage, boolean auto_gearbox, FuelType fuelType,  Barter b1,  Barter b2){
+        this.number=number;
+        this.auto_gearbox=auto_gearbox;
+        this.brand=brand;
+        if(year>1970 && year<2023) {
+            this.year = year;
+        }
+        else System.out.println("Wrong year");
+        this.kuzov=kuzov;
+        this.awd=awd;
+        if(price>0) {
+            this.price = price;
+        }
+        if(engine_size>0.1 && engine_size<8.0) {
+            this.engine_size = engine_size;
+        }
+        this.mileage=mileage;
+        this.fuelType=fuelType;
+        this.variant1=b1;
+        this.variant2=b2;
+    }
+
+
+    Elan(Brand brand, int number, int year, double engine_size, Body kuzov,boolean awd,
+         int price,int mileage, boolean auto_gearbox,  FuelType fuelType, Barter b1, Barter b2, Barter b3){
+        this.number=number;
+        this.auto_gearbox=auto_gearbox;
+        this.brand=brand;
+        if(year>1970 && year<2023) {
+            this.year = year;
+        }
+        else System.out.println("Wrong year");
+        this.kuzov=kuzov;
+        this.awd=awd;
+        if(price>0) {
+            this.price = price;
+        }
+        if(engine_size>0.1 && engine_size<8.0) {
+            this.engine_size = engine_size;
+        }
+        this.mileage=mileage;
+        this.fuelType=fuelType;
+        this.variant1=b1;
+        this.variant2=b2;
+        this.variant3=b3;
+    }
+
 
     @Override
     public String toString() {
@@ -47,7 +108,11 @@ public class Elan {
                 ", awd=" + awd +
                 ", price=" + price +
                 ", mileage=" + mileage +
+                ", fuelType=" + fuelType +
                 ", brand=" + brand +
+                ", variant1=" + variant1 +
+                ", variant2=" + variant2 +
+                ", variant3=" + variant3 +
                 '}';
     }
 }
@@ -62,6 +127,12 @@ enum Body{
 }
 
 
+enum FuelType{
+    GASOLINE,
+    DIESEL,
+    HYBRID;
+}
+
 enum Volkswagen_Models{
     GOLF,TIGUAN,JETTA,PASSAT,TOURAN,SHARAN,TOUAREG,MULTIVAN,TRANSPORTER,PHAETON,ATLAS,POLO,GOLF_R,GOLF_GTI,CARAVELLE,AMAROK,ARTEON,CC,BEETLE,CADDY,SCIROCCO,TAOS;
 }
@@ -73,7 +144,6 @@ enum Audi_Models{
 enum Toyota_Models{
     CHASER,MARK_2,ARISTO,CRESTA,MAJESTA,CROWN,CELSIOR,VENZA,SUPRA,TUNDRA,SEQUOIA,RAV4,PRIUS,YARIS,YARIS_GR,PRADO,LAND_CRUISER,CAMRY,AVALON,COROLLA,HIGHLANDER,HILUX,FORTUNER,CORONA,AVENSIS,ALPHARD,C_HR,CELICA,GT86,HARRIER,FJ_CRUISER,VITZ,CARINA,CALDINA;
 }
-
 
 
 enum InfinitiM{

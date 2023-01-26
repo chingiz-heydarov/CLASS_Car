@@ -2,10 +2,19 @@ package Barter;
 
 class Audi extends Brand{
 
-    public static final String brandName="Audi";
+    Marka marka;
     Audi_Models modelName;
-    Audi(String brandName, Audi_Models modelName){
+    Audi(Audi_Models modelName){
         this.modelName=modelName;
+        this.marka=Marka.AUDI;
+    }
+
+    @Override
+    public String toString() {
+        return "Audi{" +
+                "marka=" + marka +
+                ", modelName=" + modelName +
+                '}';
     }
 }
 

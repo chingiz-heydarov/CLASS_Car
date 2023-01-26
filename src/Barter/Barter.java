@@ -1,17 +1,31 @@
 package Barter;
 
-/* public class Barter {
-   Brand_Name brand_name;
+public class Barter {
+
+   Brand barter_brand;
     Body kuzov;
     double engine_size;
-    int year;
+
+    FuelType fuelType;
+
     boolean auto_gearbox;
-    Barter(, Body kuzov, double engine_size, int year, boolean auto_gearbox){
+
+    Barter(Brand brand, Body kuzov, double engine_size,  boolean auto_gearbox,FuelType fuelType){
      this.auto_gearbox=auto_gearbox;
-  //   this.brand_name=brand_name;
+     this.barter_brand=brand;
      this.engine_size=engine_size;
-     this.year=year;
+     this.fuelType=fuelType;
      this.kuzov=kuzov;
     }
+
+ @Override
+ public String toString() {
+  return "Barter{" +
+          "barter_brand=" + barter_brand +
+          ", kuzov=" + kuzov +
+          ", engine_size=" + engine_size +
+          ", fuelType=" + fuelType +
+          ", auto_gearbox=" + auto_gearbox +
+          '}';
+ }
 }
-*/

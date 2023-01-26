@@ -1,16 +1,16 @@
 package Barter;
 
-class Toyota extends Brand{
-    Toyota_Models modelName;
+public class Honda extends Brand{
+    HondaM modelName;
     Marka marka;
-    Toyota(Toyota_Models modelName){
-        this.marka=Marka.TOYOTA;
+    Honda(HondaM modelName){
+        this.marka=Marka.HONDA;
         this.modelName=modelName;
     }
 
     @Override
     public String toString() {
-        return "Toyota{" +
+        return "Honda{" +
                 "modelName=" + modelName +
                 ", marka=" + marka +
                 '}';

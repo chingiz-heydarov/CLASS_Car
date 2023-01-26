@@ -1,6 +1,6 @@
 package Barter;
 
-public class BMW extends Brand {
+/*public class BMW extends Brand {
     BmwM bmwModels;
     Marka marka;
     BMW(BmwM bmwModels){
@@ -15,4 +15,4 @@ public class BMW extends Brand {
                 ", marka=" + marka +
                 '}';
     }
-}
+}*/

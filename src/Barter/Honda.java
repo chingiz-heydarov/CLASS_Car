@@ -1,6 +1,6 @@
 package Barter;
 
-public class Honda extends Brand{
+/*public class Honda extends Brand{
     HondaM modelName;
     Marka marka;
     Honda(HondaM modelName){
@@ -15,4 +15,4 @@ public class Honda extends Brand{
                 ", marka=" + marka +
                 '}';
     }
-}
+}*/

@@ -1,9 +1,9 @@
 package Barter;
 
-class Volkswagen extends Brand{
+/*class Volkswagen extends Brand{
 
     Marka marka;
-Volkswagen_Models modelName;
+    Volkswagen_Models modelName;
 
     Volkswagen(Volkswagen_Models modelName){
         this.marka=Marka.VOLKSWAGEN;
@@ -17,5 +17,5 @@ Volkswagen_Models modelName;
                 ", modelName=" + modelName +
                 '}';
     }
-}
+}*/
 

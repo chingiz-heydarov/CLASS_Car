@@ -1,6 +1,6 @@
 package Barter;
 
-class Audi extends Brand{
+/* class Audi extends Brand{
 
     Marka marka;
     Audi_Models modelName;
@@ -17,4 +17,4 @@ class Audi extends Brand{
                 '}';
     }
 }
-
+*/

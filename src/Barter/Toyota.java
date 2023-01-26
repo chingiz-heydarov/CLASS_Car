@@ -1,6 +1,6 @@
 package Barter;
 
-class Toyota extends Brand{
+/*class Toyota extends Brand{
     Toyota_Models modelName;
     Marka marka;
     Toyota(Toyota_Models modelName){
@@ -15,4 +15,4 @@ class Toyota extends Brand{
                 ", marka=" + marka +
                 '}';
     }
-}
+}*/

@@ -1,6 +1,6 @@
 package Barter;
 
-public class Infiniti extends Brand{
+/*public class Infiniti extends Brand{
 
     InfinitiM infinitiModels;
     Marka marka;
@@ -16,4 +16,4 @@ public class Infiniti extends Brand{
                 ", marka=" + marka +
                 '}';
     }
-}
+}*/

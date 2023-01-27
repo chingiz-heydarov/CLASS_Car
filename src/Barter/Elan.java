@@ -6,7 +6,7 @@ import com.yanvar5ders.B;
 import java.time.LocalDate;
 
 public class Elan {
-    int number, year, price, mileage;
+    int year, price, mileage;
     double engine_size;
     boolean auto_gearbox, awd;
     Body kuzov;
@@ -14,9 +14,9 @@ public class Elan {
     Brand brand;
     Barter variant1, variant2, variant3;
 
-    Elan(Brand brand, int number, int year, double engine_size, Body kuzov,
+    Elan(Brand brand, int year, double engine_size, Body kuzov,
          boolean awd, int price,int mileage, boolean auto_gearbox, FuelType fuelType, Barter b1){
-        this.number=number;
+
         this.auto_gearbox=auto_gearbox;
         this.brand=brand;
         if(year>1970 && year<2023) {
@@ -37,9 +37,8 @@ public class Elan {
     }
 
 
-    Elan(Brand brand, int number, int year, double engine_size, Body kuzov,boolean awd,int price,
+    Elan(Brand brand, int year, double engine_size, Body kuzov,boolean awd,int price,
          int mileage, boolean auto_gearbox, FuelType fuelType,  Barter b1,  Barter b2){
-        this.number=number;
         this.auto_gearbox=auto_gearbox;
         this.brand=brand;
         if(year>1970 && year<2023) {
@@ -61,9 +60,8 @@ public class Elan {
     }
 
 
-    Elan(Brand brand, int number, int year, double engine_size, Body kuzov,boolean awd,
+    Elan(Brand brand, int year, double engine_size, Body kuzov,boolean awd,
          int price,int mileage, boolean auto_gearbox,  FuelType fuelType, Barter b1, Barter b2, Barter b3){
-        this.number=number;
         this.auto_gearbox=auto_gearbox;
         this.brand=brand;
         if(year>1970 && year<2023) {
@@ -89,7 +87,6 @@ public class Elan {
     @Override
     public String toString() {
         return "Elan{" +
-                "number=" + number +
                 ", year=" + year +
                 ", engine_size=" + engine_size +
                 ", auto_gearbox=" + auto_gearbox +

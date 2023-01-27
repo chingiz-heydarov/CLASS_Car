@@ -104,7 +104,7 @@ public class Elan {
 }
 
 enum Marka{
-    VOLKSWAGEN,TOYOTA,AUDI,INFINITI,BMW,HONDA,VOLVO;
+    VOLKSWAGEN,TOYOTA,AUDI,INFINITI,BMW,HONDA,VOLVO, MERCEDES;
 }
 
 enum Body{
@@ -113,6 +113,10 @@ enum Body{
 
 enum FuelType{
     GASOLINE, DIESEL, HYBRID;
+}
+
+enum Mercedes_Models implements Modelable{
+    A_CLASS,B_CLASS,C_CLASS,E_CLASS,S_CLASS,R_CLASS,ML,GL,GLS,GLE,CLS,CL,GT_AMG,X_CLASS,G_CLASS,VIANO,VITO,CLA,GLB,GLC,GLK,SLK;
 }
 
 enum Volkswagen_Models implements Modelable{
@@ -127,19 +131,19 @@ enum Toyota_Models implements Modelable{
     CHASER,MARK_2,ARISTO,CRESTA,MAJESTA,CROWN,CELSIOR,VENZA,SUPRA,TUNDRA,SEQUOIA,RAV4,PRIUS,YARIS,YARIS_GR,PRADO,LAND_CRUISER,CAMRY,AVALON,COROLLA,HIGHLANDER,HILUX,FORTUNER,CORONA,AVENSIS,ALPHARD,C_HR,CELICA,GT86,HARRIER,FJ_CRUISER,VITZ,CARINA,CALDINA;
 }
 
-enum InfinitiM implements Modelable{
+enum Infiniti_Models implements Modelable{
     EX35,EX37,FX37,FX35,G37,G35,FX50,FX56,M56,M37;
 }
 
-enum BmwM implements Modelable{
+enum Bmw_Models implements Modelable{
     e87,e90,e91,e92,e93,e81,e39,e46,e34,e32,e30,e36,e60,e65,e53;
 }
 
-enum HondaM implements Modelable{
+enum Honda_Models implements Modelable{
     ACCORD,CIVIC,PRELUDE,INTEGRA,CITY,PILOT,HRV,FIT,S2000;
 }
 
-enum VolvoM implements Modelable{
+enum Volvo_Models implements Modelable{
     S80,S60,S40,S90,V50,V70,V90,XC70,XC60,XC90,XC40,C30,C50;
 }
 

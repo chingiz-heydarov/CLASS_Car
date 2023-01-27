@@ -2,12 +2,10 @@ package Barter;
 
 public class Barter {
 
-   Brand barter_brand;
+    Brand barter_brand;
     Body kuzov;
     double engine_size;
-
     FuelType fuelType;
-
     boolean auto_gearbox;
 
     Barter(Brand brand, Body kuzov, double engine_size,  boolean auto_gearbox,FuelType fuelType){

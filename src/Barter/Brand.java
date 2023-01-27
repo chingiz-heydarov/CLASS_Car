@@ -9,22 +9,22 @@ class Brand{
         this.marka=Marka.VOLKSWAGEN;
         this.model=volkswagen_models;
     }
-    Brand(VolvoM volvoM){
+    Brand(Volvo_Models Volvo_Models){
         this.marka=Marka.VOLVO;
-        this.model=volvoM;
+        this.model=Volvo_Models;
     }
 
-    Brand(HondaM hondaM){
+    Brand(Honda_Models hondaM){
         this.marka=Marka.HONDA;
         this.model=hondaM;
     }
 
-    Brand(InfinitiM infinitiM){
+    Brand(Infiniti_Models Infiniti_Models){
         this.marka=Marka.INFINITI;
-        this.model=infinitiM;
+        this.model=Infiniti_Models;
     }
 
-    Brand(BmwM bmwM){
+    Brand(Bmw_Models bmwM){
         this.marka=Marka.BMW;
         this.model=bmwM;
     }
@@ -37,6 +37,11 @@ class Brand{
     Brand(Toyota_Models toyota_models){
         this.marka=Marka.TOYOTA;
         this.model=toyota_models;
+    }
+
+    Brand(Mercedes_Models mercedes_models ) {
+        this.marka = Marka.MERCEDES;
+        this.model = mercedes_models;
     }
 
     @Override

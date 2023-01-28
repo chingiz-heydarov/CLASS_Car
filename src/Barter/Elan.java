@@ -12,10 +12,13 @@ public class Elan {
     Body kuzov;
     FuelType fuelType;
     Brand brand;
+
     Barter variant1, variant2, variant3;
 
+
+
     Elan(Brand brand, int year, double engine_size, Body kuzov,
-         boolean awd, int price,int mileage, boolean auto_gearbox, FuelType fuelType, Barter b1){
+         boolean awd, int price, int mileage, boolean auto_gearbox, FuelType fuelType, Barter b1){
 
         this.auto_gearbox=auto_gearbox;
         this.brand=brand;
@@ -87,15 +90,15 @@ public class Elan {
     @Override
     public String toString() {
         return "Elan{" +
-                ", year=" + year +
-                ", engine_size=" + engine_size +
-                ", auto_gearbox=" + auto_gearbox +
-                ", kuzov=" + kuzov +
-                ", awd=" + awd +
+                "brand=" + brand +
                 ", price=" + price +
                 ", mileage=" + mileage +
+                ", engine_size=" + engine_size +
+                ", auto_gearbox=" + auto_gearbox +
+                ", awd=" + awd +
+                ", kuzov=" + kuzov +
                 ", fuelType=" + fuelType +
-                ", brand=" + brand +
+                ", year=" + year +
                 ", variant1=" + variant1 +
                 ", variant2=" + variant2 +
                 ", variant3=" + variant3 +
@@ -136,7 +139,7 @@ enum Infiniti_Models implements Modelable{
 }
 
 enum Bmw_Models implements Modelable{
-    e87,e90,e91,e92,e93,e81,e39,e46,e34,e32,e30,e36,e60,e65,e53;
+    e87,e90,e91,e92,e93,e81,e39,e46,e34,e32,e30,e36,e60,e65,e53,F20;
 }
 
 enum Honda_Models implements Modelable{

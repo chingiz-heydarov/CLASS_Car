@@ -39,10 +39,12 @@ class Brand{
         this.model=toyota_models;
     }
 
-    Brand(Mercedes_Models mercedes_models ) {
+    Brand(Modelable mercedes_models ) {
         this.marka = Marka.MERCEDES;
         this.model = mercedes_models;
     }
+
+
 
     @Override
     public String toString() {

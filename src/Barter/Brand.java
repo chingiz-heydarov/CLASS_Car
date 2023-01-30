@@ -39,10 +39,10 @@ class Brand{
         this.model=toyota_models;
     }
 
-    Brand(Modelable mercedes_models ) {
+ /*   Brand(Modelable mercedes_models ) {
         this.marka = Marka.MERCEDES;
         this.model = mercedes_models;
-    }
+    }    */
 
 
 

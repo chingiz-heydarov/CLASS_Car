@@ -15,38 +15,33 @@ public class Main {
         Scanner scs = new Scanner(System.in);
         String current_model_string = scs.next();
 
-        List<Modelable> volkswagenModelsList = Arrays.asList(Volkswagen_Models.values());
-        List<Modelable> bmwModelsList = Arrays.asList(Bmw_Models.values());
-        List<List<Modelable>> ModelsList = List.of(volkswagenModelsList, bmwModelsList);
 
+        List<Volkswagen_Models> volkswagen_models_array = Arrays.asList(Volkswagen_Models.values());
+        List<Bmw_Models> bmw_models_array = Arrays.asList(Bmw_Models.values());
+        List<Infiniti_Models> infiniti_models_array = Arrays.asList(Infiniti_Models.values());
+        List<Toyota_Models> toyota_models_array = Arrays.asList(Toyota_Models.values());
+        List<Honda_Models> honda_models_array = Arrays.asList(Honda_Models.values());
+        List<Mercedes_Models> mercedes_models_array = Arrays.asList(Mercedes_Models.values());
+        List<Volvo_Models> volvo_models_array = Arrays.asList(Volvo_Models.values());
+        List<Audi_Models> audi_models_array = Arrays.asList(Audi_Models.values());
 
-        for (List<Modelable> list : ModelsList) {
-            for (Modelable model : list) {
+        List<List<?>> modelsList= List.of(volkswagen_models_array,bmw_models_array,infiniti_models_array,toyota_models_array,
+                audi_models_array,volvo_models_array,honda_models_array,mercedes_models_array);
+
+        Brand your_brand = null;
+
+     outer:   for(List<?> list : modelsList){
+            for(Modelable model : list){
                 if (current_model_string.equals(model.toString())) {
-                    Brand your_brand = new Brand(model);
-                    System.out.println(your_brand.marka);
-                    break;
+                    your_brand = new Brand(model);
+                    break outer;
                 }
             }
         }
 
-        Brand Acura = new Brand(Honda_Models.ACCORD);
+        System.out.println(your_brand.marka);
 
-        Elan curr = new Elan(Acura, 2020, 6.9, Body.XETCHBEK, false, 27000, 152000, true, FuelType.GASOLINE,
-                new Barter(new Brand(Bmw_Models.e60), Body.UNIVERSAL, 3.0, false, FuelType.DIESEL),
-                new Barter(new Brand(Infiniti_Models.FX56), Body.SUV, 5.6, true, FuelType.GASOLINE),
-                new Barter(new Brand(Honda_Models.ACCORD), Body.XETCHBEK, 3.5, true, FuelType.GASOLINE));
-
-   /*     List<Modelable> all_models = new ArrayList<>();
-
-        List<Modelable> volkswagen_models_array = Arrays.asList(Volkswagen_Models.values());
-        List<Modelable> bmw_models_array = Arrays.asList(Bmw_Models.values());
-        List<Modelable> infiniti_models_array = Arrays.asList(Infiniti_Models.values());
-        List<Modelable> toyota_models_array = Arrays.asList(Toyota_Models.values());
-        List<Modelable> honda_models_array = Arrays.asList(Honda_Models.values());
-        List<Modelable> mercedes_models_array = Arrays.asList(Mercedes_Models.values());
-        List<Modelable> volvo_models_array = Arrays.asList(Volvo_Models.values());
-        List<Modelable> audi_models_array = Arrays.asList(Audi_Models.values());
+    /*    List<Modelable> all_models = new ArrayList<>();
 
         all_models.addAll(volvo_models_array);
         all_models.addAll(volkswagen_models_array);
@@ -64,19 +59,15 @@ public class Main {
                 current_model_modelable = x;
                 break;
             }
-        }
+        }                                  */
+
 
         //   Scanner sci = new Scanner(System.in);
         //   int current = sci.nextInt();
 
-        Elan current = new Elan(new Brand(current_model_modelable), 2013, 3.5, Body.SEDAN,
-                true, 26000, 165000, true, FuelType.GASOLINE,
-                new Barter(new Brand(Mercedes_Models.R_CLASS), Body.MINIVEN, 5.5, true, FuelType.GASOLINE));
 
 
-        System.out.println("Avtomobil markasi ve modeli:   "+current.brand);
-        System.out.println("Barter ucun istenilen avtomobilin markasi ve modeli:   "+current.variant1.barter_brand);
-        System.out.println();                */
+
 
         Elan no1 = new Elan(new Brand(Volkswagen_Models.GOLF_GTI), 2015, 2.0,
                 Body.XETCHBEK, false, 27000, 152000, true, FuelType.GASOLINE,
@@ -128,11 +119,8 @@ public class Main {
 
         for (Barter own_barter : yoursBarter) {
             for (Elan x_elan : elans) {
-                if (own_barter.barter_brand.model == x_elan.brand.model &&
-                        own_barter.kuzov == x_elan.kuzov &&
-                        own_barter.engine_size == x_elan.engine_size &&
-                        own_barter.fuelType == x_elan.fuelType &&
-                        own_barter.auto_gearbox == x_elan.auto_gearbox) {
+                if (own_barter.barter_brand.model == x_elan.brand.model && own_barter.kuzov == x_elan.kuzov &&
+                        own_barter.engine_size == x_elan.engine_size && own_barter.fuelType == x_elan.fuelType && own_barter.auto_gearbox == x_elan.auto_gearbox) {
 
                     ArrayList<Barter> uygun_elan_barterlari = new ArrayList<>();
 
@@ -141,11 +129,8 @@ public class Main {
                     if (x_elan.variant3 != null) uygun_elan_barterlari.add(x_elan.variant3);
 
                     for (Barter x_barter : uygun_elan_barterlari) {
-                        if (no6.brand.model == x_barter.barter_brand.model &&
-                                no6.kuzov == x_barter.kuzov &&
-                                no6.engine_size == x_barter.engine_size &&
-                                no6.fuelType == x_barter.fuelType &&
-                                no6.auto_gearbox == x_barter.auto_gearbox) {
+                        if (no6.brand.model == x_barter.barter_brand.model && no6.kuzov == x_barter.kuzov && no6.engine_size == x_barter.engine_size &&
+                                no6.fuelType == x_barter.fuelType && no6.auto_gearbox == x_barter.auto_gearbox) {
                             System.out.println(x_elan);
                         }
                     }

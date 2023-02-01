@@ -15,83 +15,18 @@ public class Main {
         Scanner scs = new Scanner(System.in);
         String current_model_string = scs.next();
 
+        Brand current_brand=brand_detector(current_model_string);
 
-        List<Modelable> all_models = new ArrayList<>();
-
-        List<Volkswagen_Models> volkswagen_models_array = Arrays.asList(Volkswagen_Models.values());
-        List<Bmw_Models> bmw_models_array = Arrays.asList(Bmw_Models.values());
-        List<Infiniti_Models> infiniti_models_array = Arrays.asList(Infiniti_Models.values());
-        List<Toyota_Models> toyota_models_array = Arrays.asList(Toyota_Models.values());
-        List<Honda_Models> honda_models_array = Arrays.asList(Honda_Models.values());
-        List<Mercedes_Models> mercedes_models_array = Arrays.asList(Mercedes_Models.values());
-        List<Volvo_Models> volvo_models_array = Arrays.asList(Volvo_Models.values());
-        List<Audi_Models> audi_models_array = Arrays.asList(Audi_Models.values());
-
-        all_models.addAll(volvo_models_array);
-        all_models.addAll(volkswagen_models_array);
-        all_models.addAll(bmw_models_array);
-        all_models.addAll(infiniti_models_array);
-        all_models.addAll(toyota_models_array);
-        all_models.addAll(honda_models_array);
-        all_models.addAll(mercedes_models_array);
-        all_models.addAll(audi_models_array);
-
-        int c = 1;
-
-        for (Modelable model : all_models) {
-            if (current_model_string.equals(model.toString())) break;
-            c++;
-        }
-
-        Brand your_brand = null;
-
-        if (c < 14) {
-            for (Volvo_Models model : volvo_models_array) {
-                if (current_model_string.equals(model.toString())) your_brand = new Brand(model);
-            }
-        } else if (c < 36) {
-            for (Volkswagen_Models model : volkswagen_models_array) {
-                if (current_model_string.equals(model.toString())) your_brand = new Brand(model);
-            }
-        } else if (c < 52) {
-            for (Bmw_Models model : bmw_models_array) {
-                if (current_model_string.equals(model.toString())) your_brand = new Brand(model);
-            }
-        } else if (c < 62) {
-            for (Infiniti_Models model : infiniti_models_array) {
-                if (current_model_string.equals(model.toString())) your_brand = new Brand(model);
-            }
-        } else if (c < 96) {
-            for (Toyota_Models model : toyota_models_array) {
-                if (current_model_string.equals(model.toString())) your_brand = new Brand(model);
-            }
-        } else if (c < 105) {
-            for (Honda_Models model : honda_models_array) {
-                if (current_model_string.equals(model.toString())) your_brand = new Brand(model);
-            }
-        } else if (c < 127) {
-            for (Mercedes_Models model : mercedes_models_array) {
-                if (current_model_string.equals(model.toString())) your_brand = new Brand(model);
-            }
-        } else {
-            for (Audi_Models model : audi_models_array) {
-                if (current_model_string.equals(model.toString())) your_brand = new Brand(model);
-            }
-        }
+        System.out.println(current_brand.marka+" "+current_brand.model);
 
 
-        System.out.println(your_brand.marka);
-        System.out.println(your_brand.model);
-
-
-
-    /*    //   Scanner sci = new Scanner(System.in);
-        //   int current = sci.nextInt();
+           Scanner sci = new Scanner(System.in);
+           int current_year = sci.nextInt();
 
 
 
 
-        System.out.println("Avtomobil markasi ve modeli:   "+current.brand);
+   /*     System.out.println("Avtomobil markasi ve modeli:   "+current.brand);
         System.out.println("Barter ucun istenilen avtomobilin markasi ve modeli:   "+current.variant1.barter_brand);
         System.out.println();                */
 
@@ -143,6 +78,8 @@ public class Main {
         if (no6.variant2 != null) yoursBarter.add(no6.variant2);
         if (no6.variant3 != null) yoursBarter.add(no6.variant3);
 
+
+
         for (Barter own_barter : yoursBarter) {
             for (Elan x_elan : elans) {
                 if (own_barter.barter_brand.model == x_elan.brand.model &&
@@ -171,8 +108,73 @@ public class Main {
         }
     }
 
-    public void brand_detector(String scanned_modelname){
 
+   static Brand brand_detector(String scanned_modelname){
+
+        List<Modelable> all_models = new ArrayList<>();
+
+        List<Volkswagen_Models> volkswagen_models_array = Arrays.asList(Volkswagen_Models.values());
+        List<Bmw_Models> bmw_models_array = Arrays.asList(Bmw_Models.values());
+        List<Infiniti_Models> infiniti_models_array = Arrays.asList(Infiniti_Models.values());
+        List<Toyota_Models> toyota_models_array = Arrays.asList(Toyota_Models.values());
+        List<Honda_Models> honda_models_array = Arrays.asList(Honda_Models.values());
+        List<Mercedes_Models> mercedes_models_array = Arrays.asList(Mercedes_Models.values());
+        List<Volvo_Models> volvo_models_array = Arrays.asList(Volvo_Models.values());
+        List<Audi_Models> audi_models_array = Arrays.asList(Audi_Models.values());
+
+        all_models.addAll(volvo_models_array);
+        all_models.addAll(volkswagen_models_array);
+        all_models.addAll(bmw_models_array);
+        all_models.addAll(infiniti_models_array);
+        all_models.addAll(toyota_models_array);
+        all_models.addAll(honda_models_array);
+        all_models.addAll(mercedes_models_array);
+        all_models.addAll(audi_models_array);
+
+        int c = 1;
+
+        for (Modelable model : all_models) {
+            if (scanned_modelname.equals(model.toString())) break;
+            c++;
+        }
+
+        Brand your_brand = null;
+
+        if (c < 14) {
+            for (Volvo_Models model : volvo_models_array) {
+                if (scanned_modelname.equals(model.toString())) your_brand = new Brand(model);
+            }
+        } else if (c < 36) {
+            for (Volkswagen_Models model : volkswagen_models_array) {
+                if (scanned_modelname.equals(model.toString())) your_brand = new Brand(model);
+            }
+        } else if (c < 52) {
+            for (Bmw_Models model : bmw_models_array) {
+                if (scanned_modelname.equals(model.toString())) your_brand = new Brand(model);
+            }
+        } else if (c < 62) {
+            for (Infiniti_Models model : infiniti_models_array) {
+                if (scanned_modelname.equals(model.toString())) your_brand = new Brand(model);
+            }
+        } else if (c < 96) {
+            for (Toyota_Models model : toyota_models_array) {
+                if (scanned_modelname.equals(model.toString())) your_brand = new Brand(model);
+            }
+        } else if (c < 105) {
+            for (Honda_Models model : honda_models_array) {
+                if (scanned_modelname.equals(model.toString())) your_brand = new Brand(model);
+            }
+        } else if (c < 127) {
+            for (Mercedes_Models model : mercedes_models_array) {
+                if (scanned_modelname.equals(model.toString())) your_brand = new Brand(model);
+            }
+        } else {
+            for (Audi_Models model : audi_models_array) {
+                if (scanned_modelname.equals(model.toString())) your_brand = new Brand(model);
+            }
+        }
+
+return your_brand;
     }
 
 }

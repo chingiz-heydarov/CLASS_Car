@@ -15,38 +15,17 @@ public class Main {
         Scanner scs = new Scanner(System.in);
         String current_model_string = scs.next();
 
-        List<Modelable> volkswagenModelsList = Arrays.asList(Volkswagen_Models.values());
-        List<Modelable> bmwModelsList = Arrays.asList(Bmw_Models.values());
-        List<List<Modelable>> ModelsList = List.of(volkswagenModelsList, bmwModelsList);
 
+        List<Modelable> all_models = new ArrayList<>();
 
-        for (List<Modelable> list : ModelsList) {
-            for (Modelable model : list) {
-                if (current_model_string.equals(model.toString())) {
-                    Brand your_brand = new Brand(model);
-                    System.out.println(your_brand.marka);
-                    break;
-                }
-            }
-        }
-
-        Brand Acura = new Brand(Honda_Models.ACCORD);
-
-        Elan curr = new Elan(Acura, 2020, 6.9, Body.XETCHBEK, false, 27000, 152000, true, FuelType.GASOLINE,
-                new Barter(new Brand(Bmw_Models.e60), Body.UNIVERSAL, 3.0, false, FuelType.DIESEL),
-                new Barter(new Brand(Infiniti_Models.FX56), Body.SUV, 5.6, true, FuelType.GASOLINE),
-                new Barter(new Brand(Honda_Models.ACCORD), Body.XETCHBEK, 3.5, true, FuelType.GASOLINE));
-
-   /*     List<Modelable> all_models = new ArrayList<>();
-
-        List<Modelable> volkswagen_models_array = Arrays.asList(Volkswagen_Models.values());
-        List<Modelable> bmw_models_array = Arrays.asList(Bmw_Models.values());
-        List<Modelable> infiniti_models_array = Arrays.asList(Infiniti_Models.values());
-        List<Modelable> toyota_models_array = Arrays.asList(Toyota_Models.values());
-        List<Modelable> honda_models_array = Arrays.asList(Honda_Models.values());
-        List<Modelable> mercedes_models_array = Arrays.asList(Mercedes_Models.values());
-        List<Modelable> volvo_models_array = Arrays.asList(Volvo_Models.values());
-        List<Modelable> audi_models_array = Arrays.asList(Audi_Models.values());
+        List<Volkswagen_Models> volkswagen_models_array = Arrays.asList(Volkswagen_Models.values());
+        List<Bmw_Models> bmw_models_array = Arrays.asList(Bmw_Models.values());
+        List<Infiniti_Models> infiniti_models_array = Arrays.asList(Infiniti_Models.values());
+        List<Toyota_Models> toyota_models_array = Arrays.asList(Toyota_Models.values());
+        List<Honda_Models> honda_models_array = Arrays.asList(Honda_Models.values());
+        List<Mercedes_Models> mercedes_models_array = Arrays.asList(Mercedes_Models.values());
+        List<Volvo_Models> volvo_models_array = Arrays.asList(Volvo_Models.values());
+        List<Audi_Models> audi_models_array = Arrays.asList(Audi_Models.values());
 
         all_models.addAll(volvo_models_array);
         all_models.addAll(volkswagen_models_array);
@@ -57,21 +36,59 @@ public class Main {
         all_models.addAll(mercedes_models_array);
         all_models.addAll(audi_models_array);
 
-        Modelable current_model_modelable = null;
+        int c = 1;
 
-        for (Modelable x : all_models) {
-            if (current_model_string.equals(x.toString())) {
-                current_model_modelable = x;
-                break;
+        for (Modelable model : all_models) {
+            if (current_model_string.equals(model.toString())) break;
+            c++;
+        }
+
+        Brand your_brand = null;
+
+        if (c < 14) {
+            for (Volvo_Models model : volvo_models_array) {
+                if (current_model_string.equals(model.toString())) your_brand = new Brand(model);
+            }
+        } else if (c < 36) {
+            for (Volkswagen_Models model : volkswagen_models_array) {
+                if (current_model_string.equals(model.toString())) your_brand = new Brand(model);
+            }
+        } else if (c < 52) {
+            for (Bmw_Models model : bmw_models_array) {
+                if (current_model_string.equals(model.toString())) your_brand = new Brand(model);
+            }
+        } else if (c < 62) {
+            for (Infiniti_Models model : infiniti_models_array) {
+                if (current_model_string.equals(model.toString())) your_brand = new Brand(model);
+            }
+        } else if (c < 96) {
+            for (Toyota_Models model : toyota_models_array) {
+                if (current_model_string.equals(model.toString())) your_brand = new Brand(model);
+            }
+        } else if (c < 105) {
+            for (Honda_Models model : honda_models_array) {
+                if (current_model_string.equals(model.toString())) your_brand = new Brand(model);
+            }
+        } else if (c < 127) {
+            for (Mercedes_Models model : mercedes_models_array) {
+                if (current_model_string.equals(model.toString())) your_brand = new Brand(model);
+            }
+        } else {
+            for (Audi_Models model : audi_models_array) {
+                if (current_model_string.equals(model.toString())) your_brand = new Brand(model);
             }
         }
 
-        //   Scanner sci = new Scanner(System.in);
+
+        System.out.println(your_brand.marka);
+        System.out.println(your_brand.model);
+
+
+
+    /*    //   Scanner sci = new Scanner(System.in);
         //   int current = sci.nextInt();
 
-        Elan current = new Elan(new Brand(current_model_modelable), 2013, 3.5, Body.SEDAN,
-                true, 26000, 165000, true, FuelType.GASOLINE,
-                new Barter(new Brand(Mercedes_Models.R_CLASS), Body.MINIVEN, 5.5, true, FuelType.GASOLINE));
+
 
 
         System.out.println("Avtomobil markasi ve modeli:   "+current.brand);
@@ -153,5 +170,14 @@ public class Main {
             }
         }
     }
+
+    public void brand_detector(String scanned_modelname){
+
+    }
+
 }
+
+
+
+
 

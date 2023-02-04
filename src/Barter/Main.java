@@ -188,9 +188,214 @@ public class Main {
 
         Barter current_variant1 = new Barter(current_barter_brand, current_barter_body, current_barter_engine, current_barter_gearbox, current_barter_fuel);
 
+        System.out.println("ikinci barter varinatinizi olacaq? '+' tesdiq ucun, '-' inkar ucun daxil edin");
 
-        Elan current_elan = new Elan(current_brand, current_year, current_engine, current_body, current_awd,
-                current_price, current_mileage, current_gearbox, current_fuel, current_variant1);
+
+        Scanner scan_tesdiq = new Scanner(System.in);
+        char tesdiq = scan_tesdiq.next().charAt(0);
+
+        boolean musbet;
+
+        switch (tesdiq) {
+            case '+':
+                musbet = true;
+                break;
+            case '-':
+                musbet = false;
+                break;
+            default:
+                musbet = false;
+                System.out.println("Sehv secim.");
+        }
+
+        Elan current_elan=null;
+
+        if(!musbet) current_elan = new Elan(current_brand, current_year, current_engine, current_body, current_awd,
+                    current_price, current_mileage, current_gearbox, current_fuel, current_variant1);
+
+        else {
+            System.out.println("Barter etmek ile istediyiniz avtomobilin modelini daxil edin:");
+
+            Scanner scan_barter2_model = new Scanner(System.in);
+            String current_barter2_model = scan_barter2_model.next().toUpperCase();
+
+            Brand current_barter2_brand = brand_detector(current_barter2_model);
+
+            System.out.println(current_barter2_brand.marka + " " + current_barter2_brand.model);
+
+            Body current_barter2_body = null;
+
+            outer:
+            while (true) {
+                System.out.println("Modelin govdesini daxil edin:");
+
+                Scanner scan_barter2_body = new Scanner(System.in);
+                String cur_barter2_body = scan_barter2_body.next().toUpperCase();
+
+                List<Body> bodyList = Arrays.asList(Body.values());
+
+                for (Body kuzov : bodyList) {
+                    current_barter2_body = kuzov;
+                    if (cur_barter2_body.equals(kuzov.toString())) break outer;
+                }
+            }
+
+            System.out.println("Muherrikin hecmini daxil edin: ");
+
+            Scanner scan_barter2_engine = new Scanner(System.in);
+            double current_barter2_engine = scan_barter2_engine.nextDouble();
+
+            System.out.println("Avtomobil suret qutusunu avtomatik yaxud mexaniki oldugunu qeyd edin." +
+                    " Avtomtik oldugu teqdirde 'a' herfini, mexaniki 'm' herfini daxil edin.");
+
+
+            Scanner scan_barter2_gearbox = new Scanner(System.in);
+            char current_barter2_gearbox_scan = scan_barter2_gearbox.next().charAt(0);
+
+            boolean current_barter2_gearbox;
+
+            switch (current_barter2_gearbox_scan) {
+                case 'a':
+                    current_barter2_gearbox = true;
+                    break;
+                case 'm':
+                    current_barter2_gearbox = false;
+                    break;
+                default:
+                    current_barter2_gearbox = false;
+                    System.out.println("Sehv secim.");
+            }
+
+            FuelType current_barter2_fuel = null;
+
+            outer:
+            while (true) {
+
+                System.out.println("Yanacaq novunu daxil edin: ");
+
+                Scanner scan_barter2_fuel = new Scanner(System.in);
+                String curr_barter2_fuel = scan_barter2_fuel.next().toUpperCase();
+
+
+                List<FuelType> fuelList = Arrays.asList(FuelType.values());
+
+                for (FuelType fuel : fuelList) {
+                    current_barter2_fuel = fuel;
+                    if (curr_barter2_fuel.equals(fuel.toString())) break outer;
+                }
+            }
+
+            Barter current_variant2 = new Barter(current_barter2_brand, current_barter2_body,
+                    current_barter2_engine, current_barter2_gearbox, current_barter2_fuel);
+
+
+            System.out.println("Ucuncu barter varinatinizi olacaq? '+' tesdiq ucun, '-' inkar ucun daxil edin");
+
+            Scanner scan_tesdiq2 = new Scanner(System.in);
+            char tesdiq2 = scan_tesdiq2.next().charAt(0);
+
+            boolean musbet2;
+
+            switch (tesdiq) {
+                case '+':
+                    musbet2 = true;
+                    break;
+                case '-':
+                    musbet2 = false;
+                    break;
+                default:
+                    musbet2 = false;
+                    System.out.println("Sehv secim.");
+            }
+
+            if(!musbet2) current_elan = new Elan(current_brand, current_year, current_engine, current_body, current_awd,
+                    current_price, current_mileage, current_gearbox, current_fuel, current_variant1,current_variant2);
+            else {
+                System.out.println("Barter etmek ile istediyiniz avtomobilin modelini daxil edin:");
+
+                Scanner scan_barter3_model = new Scanner(System.in);
+                String current_barter3_model = scan_barter3_model.next().toUpperCase();
+
+                Brand current_barter3_brand = brand_detector(current_barter3_model);
+
+                System.out.println(current_barter3_brand.marka + " " + current_barter3_brand.model);
+
+                Body current_barter3_body = null;
+
+                outer:
+                while (true) {
+                    System.out.println("Modelin govdesini daxil edin:");
+
+                    Scanner scan_barter3_body = new Scanner(System.in);
+                    String cur_barter3_body = scan_barter3_body.next().toUpperCase();
+
+                    List<Body> bodyList = Arrays.asList(Body.values());
+
+                    for (Body kuzov : bodyList) {
+                        current_barter3_body = kuzov;
+                        if (cur_barter3_body.equals(kuzov.toString())) break outer;
+                    }
+                }
+
+                System.out.println("Muherrikin hecmini daxil edin: ");
+
+                Scanner scan_barter3_engine = new Scanner(System.in);
+                double current_barter3_engine = scan_barter3_engine.nextDouble();
+
+                System.out.println("Avtomobil suret qutusunu avtomatik yaxud mexaniki oldugunu qeyd edin." +
+                        " Avtomtik oldugu teqdirde 'a' herfini, mexaniki 'm' herfini daxil edin.");
+
+
+                Scanner scan_barter3_gearbox = new Scanner(System.in);
+                char current_barter3_gearbox_scan = scan_barter3_gearbox.next().charAt(0);
+
+                boolean current_barter3_gearbox;
+
+                switch (current_barter3_gearbox_scan) {
+                    case 'a':
+                        current_barter3_gearbox = true;
+                        break;
+                    case 'm':
+                        current_barter3_gearbox = false;
+                        break;
+                    default:
+                        current_barter3_gearbox = false;
+                        System.out.println("Sehv secim.");
+                }
+
+                FuelType current_barter3_fuel = null;
+
+                outer:
+                while (true) {
+
+                    System.out.println("Yanacaq novunu daxil edin: ");
+
+                    Scanner scan_barter3_fuel = new Scanner(System.in);
+                    String curr_barter3_fuel = scan_barter3_fuel.next().toUpperCase();
+
+
+                    List<FuelType> fuelList = Arrays.asList(FuelType.values());
+
+                    for (FuelType fuel : fuelList) {
+                        current_barter3_fuel = fuel;
+                        if (curr_barter3_fuel.equals(fuel.toString())) break outer;
+                    }
+                }
+
+                Barter current_variant3 = new Barter(current_barter3_brand, current_barter3_body,
+                        current_barter3_engine, current_barter3_gearbox, current_barter3_fuel);
+
+                current_elan = new Elan(current_brand, current_year, current_engine, current_body, current_awd,
+                        current_price, current_mileage, current_gearbox, current_fuel, current_variant1,current_variant2,current_variant3);
+
+            }
+        }
+
+
+
+
+
+
 
         System.out.println(current_elan);
 
@@ -263,7 +468,7 @@ public class Main {
                                 no6.engine_size == x_barter.engine_size &&
                                 no6.fuelType == x_barter.fuelType &&
                                 no6.auto_gearbox == x_barter.auto_gearbox) {
-                            System.out.println(x_elan);
+                           // System.out.println(x_elan);
                         }
                     }
                 }

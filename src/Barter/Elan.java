@@ -99,9 +99,9 @@ public class Elan {
                 ", kuzov=" + kuzov +
                 ", fuelType=" + fuelType +
                 ", year=" + year +
-                ", variant1=" + variant1 +
-                ", variant2=" + variant2 +
-                ", variant3=" + variant3 +
+                ", \nvariant1=" + variant1 +
+                ", \nvariant2=" + variant2 +
+                ", \nvariant3=" + variant3 +
                 '}';
     }
 }

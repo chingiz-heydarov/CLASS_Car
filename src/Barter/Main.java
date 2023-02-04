@@ -208,10 +208,10 @@ public class Main {
                 System.out.println("Sehv secim.");
         }
 
-        Elan current_elan=null;
+        Elan current_elan = null;
 
-        if(!musbet) current_elan = new Elan(current_brand, current_year, current_engine, current_body, current_awd,
-                    current_price, current_mileage, current_gearbox, current_fuel, current_variant1);
+        if (!musbet) current_elan = new Elan(current_brand, current_year, current_engine, current_body, current_awd,
+                current_price, current_mileage, current_gearbox, current_fuel, current_variant1);
 
         else {
             System.out.println("Barter etmek ile istediyiniz avtomobilin modelini daxil edin:");
@@ -308,8 +308,9 @@ public class Main {
                     System.out.println("Sehv secim.");
             }
 
-            if(!musbet2) current_elan = new Elan(current_brand, current_year, current_engine, current_body, current_awd,
-                    current_price, current_mileage, current_gearbox, current_fuel, current_variant1,current_variant2);
+            if (!musbet2)
+                current_elan = new Elan(current_brand, current_year, current_engine, current_body, current_awd,
+                        current_price, current_mileage, current_gearbox, current_fuel, current_variant1, current_variant2);
             else {
                 System.out.println("Barter etmek ile istediyiniz avtomobilin modelini daxil edin:");
 
@@ -386,15 +387,9 @@ public class Main {
                         current_barter3_engine, current_barter3_gearbox, current_barter3_fuel);
 
                 current_elan = new Elan(current_brand, current_year, current_engine, current_body, current_awd,
-                        current_price, current_mileage, current_gearbox, current_fuel, current_variant1,current_variant2,current_variant3);
-
+                        current_price, current_mileage, current_gearbox, current_fuel, current_variant1, current_variant2, current_variant3);
             }
         }
-
-
-
-
-
 
 
         System.out.println(current_elan);
@@ -443,9 +438,9 @@ public class Main {
 
         List<Barter> yoursBarter = new ArrayList<>();
 
-        if (no6.variant1 != null) yoursBarter.add(no6.variant1);
-        if (no6.variant2 != null) yoursBarter.add(no6.variant2);
-        if (no6.variant3 != null) yoursBarter.add(no6.variant3);
+        if (current_elan.variant1 != null) yoursBarter.add(current_elan.variant1);
+        if (current_elan.variant2 != null) yoursBarter.add(current_elan.variant2);
+        if (current_elan.variant3 != null) yoursBarter.add(current_elan.variant3);
 
 
         for (Barter own_barter : yoursBarter) {
@@ -463,12 +458,12 @@ public class Main {
                     if (x_elan.variant3 != null) uygun_elan_barterlari.add(x_elan.variant3);
 
                     for (Barter x_barter : uygun_elan_barterlari) {
-                        if (no6.brand.model == x_barter.barter_brand.model &&
-                                no6.kuzov == x_barter.kuzov &&
-                                no6.engine_size == x_barter.engine_size &&
-                                no6.fuelType == x_barter.fuelType &&
-                                no6.auto_gearbox == x_barter.auto_gearbox) {
-                           // System.out.println(x_elan);
+                        if (current_elan.brand.model == x_barter.barter_brand.model &&
+                                current_elan.kuzov == x_barter.kuzov &&
+                                current_elan.engine_size == x_barter.engine_size &&
+                                current_elan.fuelType == x_barter.fuelType &&
+                                current_elan.auto_gearbox == x_barter.auto_gearbox) {
+                            // System.out.println(x_elan);
                         }
                     }
                 }

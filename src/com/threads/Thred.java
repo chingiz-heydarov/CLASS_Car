@@ -1,4 +1,4 @@
-package com;
+package com.threads;
 
 
 public class Thred extends Thread{

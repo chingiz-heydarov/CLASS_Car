@@ -296,7 +296,7 @@ public class Main {
 
             boolean musbet2;
 
-            switch (tesdiq) {
+            switch (tesdiq2) {
                 case '+':
                     musbet2 = true;
                     break;
@@ -392,8 +392,6 @@ public class Main {
         }
 
 
-        System.out.println(current_elan);
-
         Elan no1 = new Elan(new Brand(Volkswagen_Models.GOLF_GTI), 2015, 2.0,
                 Body.XETCHBEK, false, 27000, 152000, true, FuelType.GASOLINE,
                 new Barter(new Brand(Bmw_Models.e91), Body.UNIVERSAL, 3.0, false, FuelType.DIESEL),
@@ -463,7 +461,7 @@ public class Main {
                                 current_elan.engine_size == x_barter.engine_size &&
                                 current_elan.fuelType == x_barter.fuelType &&
                                 current_elan.auto_gearbox == x_barter.auto_gearbox) {
-                            // System.out.println(x_elan);
+                             System.out.println(x_elan);
                         }
                     }
                 }
@@ -536,7 +534,6 @@ public class Main {
                 if (scanned_modelname.equals(model.toString())) your_brand = new Brand(model);
             }
         }
-
         return your_brand;
     }
 

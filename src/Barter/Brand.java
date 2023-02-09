@@ -1,5 +1,7 @@
 package Barter;
 
+import com.yanvar5ders.B;
+
 class Brand{
     Marka marka;
     Modelable model;
@@ -43,8 +45,6 @@ class Brand{
         this.marka = Marka.MERCEDES;
         this.model = mercedes_models;
     }
-
-
 
     @Override
     public String toString() {

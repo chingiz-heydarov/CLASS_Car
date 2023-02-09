@@ -1,4 +1,4 @@
-package yanvar29reflekcion;
+package com.yanvar29reflekcion;
 
 public class A {
     private  A(){};

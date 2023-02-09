@@ -149,5 +149,15 @@ enum Honda_Models implements Modelable{
 enum Volvo_Models implements Modelable{
     S80,S60,S40,S90,V50,V70,V90,XC70,XC60,XC90,XC40,C30,C50;
 }
+@Modeltation
+enum Skoda_Models{
+    OCTAVIA,SUPERB,KAROQ,KODIAQ,FABIA,FELICIA,OCTAVIA_SCOUT,RAPID;
+}
+@Modeltation
+enum Nissan_Models{
+    SKYLINE,FUGA,GTR,MAXIMA,PATROL;
+}
 
 interface Modelable{};
+
+@interface Modeltation{};

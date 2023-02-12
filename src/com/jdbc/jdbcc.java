@@ -63,12 +63,12 @@ public class jdbcc {
             System.out.println(id+" "+namex);
         }
 
-//        System.out.println("Prepared Statement's Update: ");
-//
-//        PreparedStatement upd=connection.prepareStatement("insert into cars.brands values ('11','CITROEN')");
-//        ResultSet resUpd=upd.executeQuery();
-//
-//
+        System.out.println("Prepared Statement's Update: ");
+
+        PreparedStatement upd=connection.prepareStatement("insert into cars.brands values ('24','CITROEN')");
+        upd.executeUpdate();
+
+
 //        while (resUpd.next()){
 //            Integer id= resUpd.getInt(1);
 //            String namex = resUpd.getString("name");
@@ -90,11 +90,11 @@ public class jdbcc {
 //        PreparedStatement prcret = connection.prepareStatement("create table concerns"+" id integer"+"name String");
 //        ResultSet rescret = prcret.executeQuery();
 
-        Statement creat = connection.createStatement();
-        String crt= "CREATE TABLE concerns " +
-                "(id INTEGER not NULL, " +
-                " name TEXT)";
-        creat.executeQuery(crt);
+//        Statement creat = connection.createStatement();
+//        String crt= "CREATE TABLE concerns " +
+//                "(id INTEGER not NULL, " +
+//                " name TEXT)";
+//        creat.executeQuery(crt);
 
     }
 }

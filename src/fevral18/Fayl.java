@@ -8,10 +8,12 @@ import java.util.Random;
 public class Fayl {
     public static void main(String[] args) throws IOException, InterruptedException {
 
+           File ff = new File("dat.txt");
 
-        FileWriter wrt = new FileWriter("datt.txt");
+        FileWriter wrt = new FileWriter(ff);
 
-        //   File ff = new File("dat.txt");
+
+
 
         int day, month, year;
 
@@ -37,6 +39,8 @@ public class Fayl {
             wrt.write(dat);
             wrt.append('\n');
         }
+        wrt.close();
+
         //  System.out.println(ff.getAbsolutePath());
     }
 }

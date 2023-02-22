@@ -2,27 +2,84 @@ package Barter;
 
 import com.yanvar5ders.B;
 
+import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException, ParseException {
 
-        System.out.println("Avtomobilin modelini daxil edin:");
+        String url = "jdbc:postgresql://localhost:5432/postgres";
+
+        Connection connection = DriverManager.getConnection(url, "postgres", "postgres");
+
+
+        PreparedStatement statbrend = connection.prepareStatement("select distinct brend from barter.x ");
+        ResultSet resbrend = statbrend.executeQuery();
+
+        while (resbrend.next()) {
+            String brend = resbrend.getString("brend");
+            System.out.println(brend);
+        }
+
+        System.out.println("Brendi secin:");
+
+        Scanner scan_brend = new Scanner(System.in);
+        String brend = scan_brend.next();
+
+
+        PreparedStatement statmodel = connection.prepareStatement("select distinct model from barter.x where brend= ?");
+        statmodel.setString(1, brend);
+        ResultSet resmodel = statmodel.executeQuery();
+
+        System.out.println("Modeli secin:");
+
+        while (resmodel.next()) {
+            String model = resmodel.getString("model");
+            System.out.println(model);
+        }
 
         Scanner scan_model = new Scanner(System.in);
-        String current_model_string = scan_model.next().toUpperCase();
-
-        Brand current_brand = brand_detector(current_model_string);
-
-        System.out.println(current_brand.marka + " " + current_brand.model);
+        String model = scan_model.next();
 
         System.out.println("Istehsal ilini daxil edin: ");
 
         Scanner scan_year = new Scanner(System.in);
-        int current_year = scan_year.nextInt();
+        int your_year = scan_year.nextInt();
+
+        String year_string = "07-07-" + your_year;
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        Date year_date = dateFormat.parse(year_string);
+
+        java.sql.Date sqlDate = new java.sql.Date(year_date.getTime());
+
+        PreparedStatement statmotor = connection.prepareStatement("select distinct value from barter.x where model= ? and begin_year< ? and end_year> ?");
+//        +
+//                "\n" +
+//                "and begin_year< ? and end_year> ?");
+        statmotor.setString(1, model);
+        statmotor.setDate(2, sqlDate);
+        statmotor.setDate(3, sqlDate);
+        ResultSet resmotor = statmotor.executeQuery();
+
+        while (resmotor.next()) {
+            double value = resmotor.getDouble("value");
+            System.out.println(value);
+        }
+
+
+//        System.out.println("Istehsal ilini daxil edin: ");
+//
+//        Scanner scan_year = new Scanner(System.in);
+//        int current_year = scan_year.nextInt();
 
         System.out.println("Muherrikin hecmini daxil edin: ");
 
@@ -210,7 +267,7 @@ public class Main {
 
         Elan current_elan = null;
 
-        if (!musbet) current_elan = new Elan(current_brand, current_year, current_engine, current_body, current_awd,
+        if (!musbet) current_elan = new Elan(current_barter_brand, 2, current_engine, current_body, current_awd,
                 current_price, current_mileage, current_gearbox, current_fuel, current_variant1);
 
         else {
@@ -309,7 +366,7 @@ public class Main {
             }
 
             if (!musbet2)
-                current_elan = new Elan(current_brand, current_year, current_engine, current_body, current_awd,
+                current_elan = new Elan(current_barter_brand, 1994, current_engine, current_body, current_awd,
                         current_price, current_mileage, current_gearbox, current_fuel, current_variant1, current_variant2);
             else {
                 System.out.println("Barter etmek ile istediyiniz avtomobilin modelini daxil edin:");
@@ -386,7 +443,7 @@ public class Main {
                 Barter current_variant3 = new Barter(current_barter3_brand, current_barter3_body,
                         current_barter3_engine, current_barter3_gearbox, current_barter3_fuel);
 
-                current_elan = new Elan(current_brand, current_year, current_engine, current_body, current_awd,
+                current_elan = new Elan(current_barter_brand, 1994, current_engine, current_body, current_awd,
                         current_price, current_mileage, current_gearbox, current_fuel, current_variant1, current_variant2, current_variant3);
             }
         }
@@ -461,7 +518,7 @@ public class Main {
                                 current_elan.engine_size == x_barter.engine_size &&
                                 current_elan.fuelType == x_barter.fuelType &&
                                 current_elan.auto_gearbox == x_barter.auto_gearbox) {
-                             System.out.println(x_elan);
+                            System.out.println(x_elan);
                         }
                     }
                 }

@@ -25,11 +25,11 @@ public class Main {
         ResultSet resbrend = statbrend.executeQuery();
 
         while (resbrend.next()) {
-            String brend = resbrend.getString("brend");
+            String brend = resbrend.getString("brend");       //       -------------BREND------------
             System.out.println(brend);
         }
 
-        System.out.println("Brendi secin:");
+        System.out.println("--------- Brendi secin: ----------");
 
         Scanner scan_brend = new Scanner(System.in);
         String brend = scan_brend.next();
@@ -39,7 +39,7 @@ public class Main {
         statmodel.setString(1, brend);
         ResultSet resmodel = statmodel.executeQuery();
 
-        System.out.println("Modeli secin:");
+        System.out.println("--------- Modeli secin: ---------");                  //-------------------MODEL--------------
 
         while (resmodel.next()) {
             String model = resmodel.getString("model");
@@ -49,7 +49,7 @@ public class Main {
         Scanner scan_model = new Scanner(System.in);
         String model = scan_model.next();
 
-        System.out.println("Istehsal ilini daxil edin: ");
+        System.out.println("--------- Istehsal ilini daxil edin: --------- ");
 
         Scanner scan_year = new Scanner(System.in);
         int your_year = scan_year.nextInt();
@@ -57,18 +57,20 @@ public class Main {
         String year_string = "07-07-" + your_year;
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        Date year_date = dateFormat.parse(year_string);
+        Date year_date = dateFormat.parse(year_string);                                    // ----------GENERATION (YEAR) ---------------
 
         java.sql.Date sqlDate = new java.sql.Date(year_date.getTime());
 
-        PreparedStatement statmotor = connection.prepareStatement("select distinct value from barter.x where model= ? and begin_year< ? and end_year> ?");
-//        +
-//                "\n" +
-//                "and begin_year< ? and end_year> ?");
-        statmotor.setString(1, model);
+        PreparedStatement statmotor = connection.prepareStatement("select distinct value from barter.x where model= ? and begin_year< ? " +
+                "and end_year> ?");
+
+        statmotor.setString(1, model);                         // -----------------MOTOR---------------
         statmotor.setDate(2, sqlDate);
         statmotor.setDate(3, sqlDate);
+
         ResultSet resmotor = statmotor.executeQuery();
+
+        System.out.println("----------- Movcud olan motorlar: -----------");
 
         while (resmotor.next()) {
             double value = resmotor.getDouble("value");
@@ -76,31 +78,97 @@ public class Main {
         }
 
 
-//        System.out.println("Istehsal ilini daxil edin: ");
-//
-//        Scanner scan_year = new Scanner(System.in);
-//        int current_year = scan_year.nextInt();
 
-        System.out.println("Muherrikin hecmini daxil edin: ");
+        System.out.println("---------- Muherrikin hecmini secin: ----------");
 
         Scanner scan_engine = new Scanner(System.in);
-        double current_engine = scan_engine.nextDouble();
+        double motor = scan_engine.nextDouble();
 
-        Body current_body = null;
+        PreparedStatement statkuzov=connection.prepareStatement("select distinct kuzov from barter.x where model= ? and" +
+                " begin_year< ? and end_year> ? and value= ?\n");
 
-        outer:
-        while (true) {
-            System.out.println("Govdesini daxil edin: ");
+        statkuzov.setString(1, model);          // ------------------KUZOV-------------
+        statkuzov.setDate(2, sqlDate);
+        statkuzov.setDate(3, sqlDate);
+        statkuzov.setDouble(4,motor);
 
-            Scanner scan_body = new Scanner(System.in);
-            String cur_body = scan_body.next().toUpperCase();
 
-            List<Body> bodyList = Arrays.asList(Body.values());
+        ResultSet reskuzov=statkuzov.executeQuery();
 
-            for (Body kuzov : bodyList) {
-                current_body = kuzov;
-                if (cur_body.equals(kuzov.toString())) break outer;
+        System.out.println("----------- Movcud olan kuzov tipleri: ----------");
+
+        while (reskuzov.next()){
+            String kuzov=reskuzov.getString("kuzov");
+            System.out.println(kuzov);
+        }
+
+
+        System.out.println("--------- Govdesini daxil edin: --------");
+
+        Scanner scan_body = new Scanner(System.in);
+        String kuzov = scan_body.next();
+
+
+        PreparedStatement statauto = connection.prepareStatement("select distinct auto from barter.x where model= ?\n" +
+                "and begin_year< ? and end_year> ? and value= ? and kuzov= ?\n");
+
+        statauto.setString(1, model);
+        statauto.setDate(2, sqlDate);
+        statauto.setDate(3, sqlDate);
+        statauto.setDouble(4,motor);
+        statauto.setString(5,kuzov);
+
+        ResultSet resauto=statauto.executeQuery();
+
+        System.out.println("--------- Modelde movcud olan korobka tipleri: ---------");
+
+        while (resauto.next()){
+            boolean auto=resauto.getBoolean("auto");
+            if(auto) System.out.println("avtomat");
+            else System.out.println("mexanika");
+        }
+
+        System.out.println("---------- Avtomobil suret qutusunu avtomatik yaxud mexaniki oldugunu qeyd edin." +
+                " Avtomtik oldugu teqdirde 'a' herfini, mexaniki 'm' herfini daxil edin. ----------");
+
+
+        Scanner scan_gearbox = new Scanner(System.in);
+        char scan_auto = scan_gearbox.next().charAt(0);
+
+        boolean auto;
+
+        switch (scan_auto) {
+            case 'a':
+                auto = true;
+                break;
+            case 'm' :
+                auto = false;
+                break;
+            default : {
+                auto = false;
+                System.out.println("---------- Sehv secim. Avtomobilin suret qutusu mexanika kimi qeyd olunacaq. ----------");
             }
+        }
+
+
+        PreparedStatement statawd =connection.prepareStatement("select distinct awd from barter.x where model= ?" +
+                "                and begin_year< ? and end_year> ? and value= ? and kuzov= ? and auto= ?");
+
+        statawd.setString(1, model);
+        statawd.setDate(2, sqlDate);
+        statawd.setDate(3, sqlDate);
+        statawd.setDouble(4,motor);
+        statawd.setString(5,kuzov);
+        statawd.setBoolean(6,auto);
+
+        ResultSet resawd=statawd.executeQuery();
+
+        System.out.println("---------- Modelin shassi variantlari: ---------");
+
+        while (resawd.next()){
+            boolean awd=resawd.getBoolean("awd");
+            if(awd) System.out.println("4x4");
+            else System.out.println("4x2");
         }
 
         System.out.println("Avtomobil dordceken sistemi ile techiz olunubsa, '+' daxil edin, eks halda '-' daxil edin.");
@@ -108,19 +176,65 @@ public class Main {
         Scanner scan_awd = new Scanner(System.in);
         char current_awd_scan = scan_awd.next().charAt(0);
 
-        boolean current_awd;
+        boolean awd;
 
         switch (current_awd_scan) {
-            case '+':
-                current_awd = true;
+            case '+' :
+                awd = true;
                 break;
-            case '-':
-                current_awd = false;
+            case '-' :
+                awd = false;
                 break;
-            default:
-                current_awd = false;
+            default : {
+                awd = false;
                 System.out.println("Sehv secim.");
+            }
         }
+
+
+
+
+
+
+
+
+        System.out.println("-----------------------------------------------------------------------------------------------");
+
+        Body current_body = null;
+
+        outer:
+        while (true) {
+            System.out.println("Govdesini daxil edin: ");
+
+        //    Scanner scan_body = new Scanner(System.in);
+         //   String cur_body = scan_body.next().toUpperCase();
+
+            List<Body> bodyList = Arrays.asList(Body.values());
+
+            for (Body kuzovd : bodyList) {
+                current_body = kuzovd;
+                if (kuzov.equals(kuzov.toString())) break outer;
+            }
+        }
+
+        System.out.println("Avtomobil dordceken sistemi ile techiz olunubsa, '+' daxil edin, eks halda '-' daxil edin.");
+
+//        Scanner scan_awd = new Scanner(System.in);
+//        char current_awd_scan = scan_awd.next().charAt(0);
+//
+//        boolean current_awd;
+//
+//        switch (current_awd_scan) {
+//            case '+':
+//                current_awd = true;
+//                break;
+//            case '-':
+//                current_awd = false;
+//                break;
+//            default:
+//                current_awd = false;
+//                System.out.println("Sehv secim.");
+//        }
 
 
         System.out.println("Avtomobilin qiymetini daxil edin:");
@@ -137,22 +251,22 @@ public class Main {
                 " Avtomtik oldugu teqdirde 'a' herfini, mexaniki 'm' herfini daxil edin.");
 
 
-        Scanner scan_gearbox = new Scanner(System.in);
-        char current_gearbox_scan = scan_gearbox.next().charAt(0);
+    //    Scanner scan_gearbox = new Scanner(System.in);
+     //   char current_gearbox_scan = scan_gearbox.next().charAt(0);
 
-        boolean current_gearbox;
-
-        switch (current_gearbox_scan) {
-            case 'a':
-                current_gearbox = true;
-                break;
-            case 'm':
-                current_gearbox = false;
-                break;
-            default:
-                current_gearbox = false;
-                System.out.println("Sehv secim. Avtomobilin suret qutusu mexanika kimi qeyd olunacaq.");
-        }
+//        boolean current_gearbox;
+//
+//        switch (current_gearbox_scan) {
+//            case 'a':
+//                current_gearbox = true;
+//                break;
+//            case 'm':
+//                current_gearbox = false;
+//                break;
+//            default:
+//                current_gearbox = false;
+//                System.out.println("Sehv secim. Avtomobilin suret qutusu mexanika kimi qeyd olunacaq.");
+//        }
 
         FuelType current_fuel = null;
 
@@ -192,8 +306,8 @@ public class Main {
 
             List<Body> bodyList = Arrays.asList(Body.values());
 
-            for (Body kuzov : bodyList) {
-                current_barter_body = kuzov;
+            for (Body kuzova : bodyList) {
+                current_barter_body = kuzova;
                 if (cur_barter_body.equals(kuzov.toString())) break outer;
             }
         }
@@ -267,8 +381,8 @@ public class Main {
 
         Elan current_elan = null;
 
-        if (!musbet) current_elan = new Elan(current_barter_brand, 2, current_engine, current_body, current_awd,
-                current_price, current_mileage, current_gearbox, current_fuel, current_variant1);
+        if (!musbet) current_elan = new Elan(current_barter_brand, 2, motor, current_body, awd,
+                current_price, current_mileage, auto, current_fuel, current_variant1);
 
         else {
             System.out.println("Barter etmek ile istediyiniz avtomobilin modelini daxil edin:");
@@ -291,8 +405,8 @@ public class Main {
 
                 List<Body> bodyList = Arrays.asList(Body.values());
 
-                for (Body kuzov : bodyList) {
-                    current_barter2_body = kuzov;
+                for (Body kuzovd : bodyList) {
+                    current_barter2_body = kuzovd;
                     if (cur_barter2_body.equals(kuzov.toString())) break outer;
                 }
             }
@@ -366,8 +480,8 @@ public class Main {
             }
 
             if (!musbet2)
-                current_elan = new Elan(current_barter_brand, 1994, current_engine, current_body, current_awd,
-                        current_price, current_mileage, current_gearbox, current_fuel, current_variant1, current_variant2);
+                current_elan = new Elan(current_barter_brand, 1994, motor, current_body, awd,
+                        current_price, current_mileage, auto, current_fuel, current_variant1, current_variant2);
             else {
                 System.out.println("Barter etmek ile istediyiniz avtomobilin modelini daxil edin:");
 
@@ -389,8 +503,8 @@ public class Main {
 
                     List<Body> bodyList = Arrays.asList(Body.values());
 
-                    for (Body kuzov : bodyList) {
-                        current_barter3_body = kuzov;
+                    for (Body kuzovd : bodyList) {
+                        current_barter3_body = kuzovd;
                         if (cur_barter3_body.equals(kuzov.toString())) break outer;
                     }
                 }
@@ -443,8 +557,8 @@ public class Main {
                 Barter current_variant3 = new Barter(current_barter3_brand, current_barter3_body,
                         current_barter3_engine, current_barter3_gearbox, current_barter3_fuel);
 
-                current_elan = new Elan(current_barter_brand, 1994, current_engine, current_body, current_awd,
-                        current_price, current_mileage, current_gearbox, current_fuel, current_variant1, current_variant2, current_variant3);
+                current_elan = new Elan(current_barter_brand, 1994, motor, current_body, awd,
+                        current_price, current_mileage, auto, current_fuel, current_variant1, current_variant2, current_variant3);
             }
         }
 

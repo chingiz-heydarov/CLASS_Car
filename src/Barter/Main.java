@@ -24,12 +24,13 @@ public class Main {
         PreparedStatement statbrend = connection.prepareStatement("select distinct brend from barter.x ");
         ResultSet resbrend = statbrend.executeQuery();
 
+        System.out.println("--------- Brendi secin: ----------");
+
         while (resbrend.next()) {
             String brend = resbrend.getString("brend");       //       -------------BREND------------
             System.out.println(brend);
         }
 
-        System.out.println("--------- Brendi secin: ----------");
 
         Scanner scan_brend = new Scanner(System.in);
         String brend = scan_brend.next();
@@ -70,7 +71,7 @@ public class Main {
 
         ResultSet resmotor = statmotor.executeQuery();
 
-        System.out.println("----------- Movcud olan motorlar: -----------");
+        System.out.println("---------- Muherrikin hecmini secin: ----------");
 
         while (resmotor.next()) {
             double value = resmotor.getDouble("value");
@@ -78,32 +79,27 @@ public class Main {
         }
 
 
-
-        System.out.println("---------- Muherrikin hecmini secin: ----------");
-
         Scanner scan_engine = new Scanner(System.in);
         double motor = scan_engine.nextDouble();
 
-        PreparedStatement statkuzov=connection.prepareStatement("select distinct kuzov from barter.x where model= ? and" +
+        PreparedStatement statkuzov = connection.prepareStatement("select distinct kuzov from barter.x where model= ? and" +
                 " begin_year< ? and end_year> ? and value= ?\n");
 
         statkuzov.setString(1, model);          // ------------------KUZOV-------------
         statkuzov.setDate(2, sqlDate);
         statkuzov.setDate(3, sqlDate);
-        statkuzov.setDouble(4,motor);
+        statkuzov.setDouble(4, motor);
 
 
-        ResultSet reskuzov=statkuzov.executeQuery();
+        ResultSet reskuzov = statkuzov.executeQuery();
 
-        System.out.println("----------- Movcud olan kuzov tipleri: ----------");
+        System.out.println("--------- Govdesini daxil edin: --------");
 
-        while (reskuzov.next()){
-            String kuzov=reskuzov.getString("kuzov");
+        while (reskuzov.next()) {
+            String kuzov = reskuzov.getString("kuzov");
             System.out.println(kuzov);
         }
 
-
-        System.out.println("--------- Govdesini daxil edin: --------");
 
         Scanner scan_body = new Scanner(System.in);
         String kuzov = scan_body.next();
@@ -115,16 +111,16 @@ public class Main {
         statauto.setString(1, model);
         statauto.setDate(2, sqlDate);
         statauto.setDate(3, sqlDate);
-        statauto.setDouble(4,motor);
-        statauto.setString(5,kuzov);
+        statauto.setDouble(4, motor);
+        statauto.setString(5, kuzov);
 
-        ResultSet resauto=statauto.executeQuery();
+        ResultSet resauto = statauto.executeQuery();
 
         System.out.println("--------- Modelde movcud olan korobka tipleri: ---------");
 
-        while (resauto.next()){
-            boolean auto=resauto.getBoolean("auto");
-            if(auto) System.out.println("avtomat");
+        while (resauto.next()) {
+            boolean auto = resauto.getBoolean("auto");                       //-----------------KOROBKA-------------
+            if (auto) System.out.println("avtomat");
             else System.out.println("mexanika");
         }
 
@@ -141,56 +137,87 @@ public class Main {
             case 'a':
                 auto = true;
                 break;
-            case 'm' :
+            case 'm':
                 auto = false;
                 break;
-            default : {
+            default: {
                 auto = false;
                 System.out.println("---------- Sehv secim. Avtomobilin suret qutusu mexanika kimi qeyd olunacaq. ----------");
             }
         }
 
 
-        PreparedStatement statawd =connection.prepareStatement("select distinct awd from barter.x where model= ?" +
+        PreparedStatement statawd = connection.prepareStatement("select distinct awd from barter.x where model= ?" +
                 "                and begin_year< ? and end_year> ? and value= ? and kuzov= ? and auto= ?");
 
         statawd.setString(1, model);
         statawd.setDate(2, sqlDate);
         statawd.setDate(3, sqlDate);
-        statawd.setDouble(4,motor);
-        statawd.setString(5,kuzov);
-        statawd.setBoolean(6,auto);
+        statawd.setDouble(4, motor);
+        statawd.setString(5, kuzov);
+        statawd.setBoolean(6, auto);
 
-        ResultSet resawd=statawd.executeQuery();
+        ResultSet resawd = statawd.executeQuery();
 
         System.out.println("---------- Modelin shassi variantlari: ---------");
 
-        while (resawd.next()){
-            boolean awd=resawd.getBoolean("awd");
-            if(awd) System.out.println("4x4");
+        while (resawd.next()) {
+            boolean awd = resawd.getBoolean("awd");                 //--------------AWD---------------
+            if (awd) System.out.println("4x4");
             else System.out.println("4x2");
         }
 
-        System.out.println("Avtomobil dordceken sistemi ile techiz olunubsa, '+' daxil edin, eks halda '-' daxil edin.");
+        System.out.println("Avtomobil dordceken sistemi ile techiz olunubsa, '4' daxil edin, eks halda '2' daxil edin.");
 
         Scanner scan_awd = new Scanner(System.in);
-        char current_awd_scan = scan_awd.next().charAt(0);
+        int awd_scan = scan_awd.nextInt();
 
         boolean awd;
 
-        switch (current_awd_scan) {
-            case '+' :
+        switch (awd_scan) {
+            case 4:
                 awd = true;
                 break;
-            case '-' :
+            case 2:
                 awd = false;
                 break;
-            default : {
+            default: {
                 awd = false;
                 System.out.println("Sehv secim.");
             }
         }
 
+        System.out.println("Avtomobilin yurusunu daxil edin:");
+
+        Scanner scan_mileage = new Scanner(System.in);                   //  --------PROBEQ----------
+        int probeq = scan_mileage.nextInt();
+
+
+        PreparedStatement statklassik = connection.prepareStatement("select distinct klassik from barter.x where model= ?");
+        statklassik.setString(1, model);
+
+        ResultSet resklassik = statklassik.executeQuery();
+
+
+        while (resklassik.next()) {
+            boolean klassik = resklassik.getBoolean("klassik");           // --------KLASSIK----------
+        }
+
+
+        PreparedStatement stathpf = connection.prepareStatement("select distinct hp,fuel from barter.x where model= ? and begin_year< ? " +
+                "and end_year> ? and value= ?");
+
+        stathpf.setString(1, model);                         // -----------------HP & FUEL---------------
+        stathpf.setDate(2, sqlDate);
+        stathpf.setDate(3, sqlDate);
+        stathpf.setDouble(4, motor);
+
+        ResultSet reshpf=stathpf.executeQuery();
+
+        while(reshpf.next()){
+            int hp=reshpf.getInt("hp");
+            String fuel=reshpf.getString("fuel");
+        }
 
 
 
@@ -198,7 +225,7 @@ public class Main {
 
 
 
-        System.out.println("-----------------------------------------------------------------------------------------------");
+        System.out.println("------------------------------------------------------------------------------------------------------------------------");
 
         Body current_body = null;
 
@@ -206,8 +233,8 @@ public class Main {
         while (true) {
             System.out.println("Govdesini daxil edin: ");
 
-        //    Scanner scan_body = new Scanner(System.in);
-         //   String cur_body = scan_body.next().toUpperCase();
+            //    Scanner scan_body = new Scanner(System.in);
+            //   String cur_body = scan_body.next().toUpperCase();
 
             List<Body> bodyList = Arrays.asList(Body.values());
 
@@ -242,17 +269,17 @@ public class Main {
         Scanner scan_price = new Scanner(System.in);
         int current_price = scan_price.nextInt();
 
-        System.out.println("Avtomobilin yurusunu daxil edin:");
-
-        Scanner scan_mileage = new Scanner(System.in);
-        int current_mileage = scan_mileage.nextInt();
+//        System.out.println("Avtomobilin yurusunu daxil edin:");
+//
+//        Scanner scan_mileage = new Scanner(System.in);
+//        int probeq = scan_mileage.nextInt();
 
         System.out.println("Avtomobil suret qutusunu avtomatik yaxud mexaniki oldugunu qeyd edin." +
                 " Avtomtik oldugu teqdirde 'a' herfini, mexaniki 'm' herfini daxil edin.");
 
 
-    //    Scanner scan_gearbox = new Scanner(System.in);
-     //   char current_gearbox_scan = scan_gearbox.next().charAt(0);
+        //    Scanner scan_gearbox = new Scanner(System.in);
+        //   char current_gearbox_scan = scan_gearbox.next().charAt(0);
 
 //        boolean current_gearbox;
 //
@@ -382,7 +409,7 @@ public class Main {
         Elan current_elan = null;
 
         if (!musbet) current_elan = new Elan(current_barter_brand, 2, motor, current_body, awd,
-                current_price, current_mileage, auto, current_fuel, current_variant1);
+                current_price, probeq, auto, current_fuel, current_variant1);
 
         else {
             System.out.println("Barter etmek ile istediyiniz avtomobilin modelini daxil edin:");
@@ -481,7 +508,7 @@ public class Main {
 
             if (!musbet2)
                 current_elan = new Elan(current_barter_brand, 1994, motor, current_body, awd,
-                        current_price, current_mileage, auto, current_fuel, current_variant1, current_variant2);
+                        current_price, probeq, auto, current_fuel, current_variant1, current_variant2);
             else {
                 System.out.println("Barter etmek ile istediyiniz avtomobilin modelini daxil edin:");
 
@@ -558,7 +585,7 @@ public class Main {
                         current_barter3_engine, current_barter3_gearbox, current_barter3_fuel);
 
                 current_elan = new Elan(current_barter_brand, 1994, motor, current_body, awd,
-                        current_price, current_mileage, auto, current_fuel, current_variant1, current_variant2, current_variant3);
+                        current_price, probeq, auto, current_fuel, current_variant1, current_variant2, current_variant3);
             }
         }
 

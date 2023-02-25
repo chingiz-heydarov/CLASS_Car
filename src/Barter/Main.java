@@ -24,7 +24,7 @@ public class Main {
         PreparedStatement statbrend = connection.prepareStatement("select distinct brend from barter.x ");
         ResultSet resbrend = statbrend.executeQuery();
 
-        System.out.println("--------- Brendi secin: ----------");
+        System.out.println("---------- Brendi secin: ----------");
 
         while (resbrend.next()) {
             String brend = resbrend.getString("brend");       //       -------------BREND------------
@@ -50,12 +50,12 @@ public class Main {
         Scanner scan_model = new Scanner(System.in);
         String model = scan_model.next();
 
-        System.out.println("--------- Istehsal ilini daxil edin: --------- ");
+        System.out.println("--------- Istehsal ilini daxil edin: ---------");
 
         Scanner scan_year = new Scanner(System.in);
-        int your_year = scan_year.nextInt();
+        int year = scan_year.nextInt();
 
-        String year_string = "07-07-" + your_year;
+        String year_string = "07-07-" + year;
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         Date year_date = dateFormat.parse(year_string);                                    // ----------GENERATION (YEAR) ---------------
@@ -131,17 +131,17 @@ public class Main {
         Scanner scan_gearbox = new Scanner(System.in);
         char scan_auto = scan_gearbox.next().charAt(0);
 
-        boolean auto;
+        boolean korobka;
 
         switch (scan_auto) {
             case 'a':
-                auto = true;
+                korobka = true;
                 break;
             case 'm':
-                auto = false;
+                korobka = false;
                 break;
             default: {
-                auto = false;
+                korobka = false;
                 System.out.println("---------- Sehv secim. Avtomobilin suret qutusu mexanika kimi qeyd olunacaq. ----------");
             }
         }
@@ -155,7 +155,7 @@ public class Main {
         statawd.setDate(3, sqlDate);
         statawd.setDouble(4, motor);
         statawd.setString(5, kuzov);
-        statawd.setBoolean(6, auto);
+        statawd.setBoolean(6, korobka);
 
         ResultSet resawd = statawd.executeQuery();
 
@@ -198,9 +198,10 @@ public class Main {
 
         ResultSet resklassik = statklassik.executeQuery();
 
+        boolean klassik = false;
 
         while (resklassik.next()) {
-            boolean klassik = resklassik.getBoolean("klassik");           // --------KLASSIK----------
+            klassik = resklassik.getBoolean("klassik");           // --------KLASSIK----------
         }
 
 
@@ -212,14 +213,33 @@ public class Main {
         stathpf.setDate(3, sqlDate);
         stathpf.setDouble(4, motor);
 
-        ResultSet reshpf=stathpf.executeQuery();
+        ResultSet reshpf = stathpf.executeQuery();
 
-        while(reshpf.next()){
-            int hp=reshpf.getInt("hp");
-            String fuel=reshpf.getString("fuel");
+        int hp = 0;
+        String fuel = null;
+
+        while (reshpf.next()) {
+            hp = reshpf.getInt("hp");
+            fuel = reshpf.getString("fuel");
         }
 
 
+        PreparedStatement insertcar = connection.prepareStatement("insert into barter.cars (brend,model,motor,kuzov,klassik,korobka,privod," +
+                "probeq,fuel,hp,year) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+        insertcar.setString(1, brend);
+        insertcar.setString(2, model);
+        insertcar.setDouble(3, motor);
+        insertcar.setString(4, kuzov);
+        insertcar.setBoolean(5, klassik);
+        insertcar.setBoolean(6, korobka);
+        insertcar.setBoolean(7, awd);
+        insertcar.setInt(8, probeq);
+        insertcar.setString(9, fuel);
+        insertcar.setInt(10, hp);
+        insertcar.setInt(11, year);
+
+        insertcar.executeUpdate();
 
 
 
@@ -307,8 +327,8 @@ public class Main {
             List<FuelType> fuelList = Arrays.asList(FuelType.values());
 
 
-            for (FuelType fuel : fuelList) {
-                current_fuel = fuel;
+            for (FuelType ffuel : fuelList) {
+                current_fuel = ffuel;
                 if (curr_fuel.equals(fuel.toString())) break outer;
             }
         }
@@ -378,8 +398,8 @@ public class Main {
 
             List<FuelType> fuelList = Arrays.asList(FuelType.values());
 
-            for (FuelType fuel : fuelList) {
-                current_barter_fuel = fuel;
+            for (FuelType ffuel : fuelList) {
+                current_barter_fuel = ffuel;
                 if (curr_barter_fuel.equals(fuel.toString())) break outer;
             }
         }
@@ -409,7 +429,7 @@ public class Main {
         Elan current_elan = null;
 
         if (!musbet) current_elan = new Elan(current_barter_brand, 2, motor, current_body, awd,
-                current_price, probeq, auto, current_fuel, current_variant1);
+                current_price, probeq, korobka, current_fuel, current_variant1);
 
         else {
             System.out.println("Barter etmek ile istediyiniz avtomobilin modelini daxil edin:");
@@ -477,8 +497,8 @@ public class Main {
 
                 List<FuelType> fuelList = Arrays.asList(FuelType.values());
 
-                for (FuelType fuel : fuelList) {
-                    current_barter2_fuel = fuel;
+                for (FuelType ffuel : fuelList) {
+                    current_barter2_fuel = ffuel;
                     if (curr_barter2_fuel.equals(fuel.toString())) break outer;
                 }
             }
@@ -508,7 +528,7 @@ public class Main {
 
             if (!musbet2)
                 current_elan = new Elan(current_barter_brand, 1994, motor, current_body, awd,
-                        current_price, probeq, auto, current_fuel, current_variant1, current_variant2);
+                        current_price, probeq, korobka, current_fuel, current_variant1, current_variant2);
             else {
                 System.out.println("Barter etmek ile istediyiniz avtomobilin modelini daxil edin:");
 
@@ -575,8 +595,8 @@ public class Main {
 
                     List<FuelType> fuelList = Arrays.asList(FuelType.values());
 
-                    for (FuelType fuel : fuelList) {
-                        current_barter3_fuel = fuel;
+                    for (FuelType ffuel : fuelList) {
+                        current_barter3_fuel = ffuel;
                         if (curr_barter3_fuel.equals(fuel.toString())) break outer;
                     }
                 }
@@ -585,7 +605,7 @@ public class Main {
                         current_barter3_engine, current_barter3_gearbox, current_barter3_fuel);
 
                 current_elan = new Elan(current_barter_brand, 1994, motor, current_body, awd,
-                        current_price, probeq, auto, current_fuel, current_variant1, current_variant2, current_variant3);
+                        current_price, probeq, korobka, current_fuel, current_variant1, current_variant2, current_variant3);
             }
         }
 

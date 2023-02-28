@@ -19,6 +19,9 @@ public class Sql {
         }
     }
 
+    public Sql() throws SQLException {
+    }
+
     public static void selekt(String brendd, String modell, String kuzovv, Double valuee, String year, String avto, String awdd) throws SQLException, ParseException {
 
 
@@ -157,5 +160,27 @@ public class Sql {
             }
         }
        return null;
+    }
+
+
+    public static void insert(String brend, String model, double motor,String kuzov, Boolean klassik,boolean korobka,boolean awd,
+                              int probeq,String fuel,int hp,int year) throws SQLException {
+
+        PreparedStatement insertcar = connection.prepareStatement("insert into barter.cars (brend,model,motor,kuzov,klassik,korobka,privod," +
+                "probeq,fuel,hp,year) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+        insertcar.setString(1, brend);
+        insertcar.setString(2, model);
+        insertcar.setDouble(3, motor);
+        insertcar.setString(4, kuzov);
+        insertcar.setBoolean(5, Boolean.TRUE.equals(klassik));
+        insertcar.setBoolean(6, korobka);
+        insertcar.setBoolean(7, awd);
+        insertcar.setInt(8, probeq);
+        insertcar.setString(9, fuel);
+        insertcar.setInt(10, hp);
+        insertcar.setInt(11, year);
+
+        insertcar.executeUpdate();
     }
 }

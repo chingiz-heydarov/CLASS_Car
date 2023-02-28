@@ -1,24 +1,15 @@
 package Barter;
 
-import com.yanvar5ders.B;
 
 import java.sql.*;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws SQLException, ParseException {
-
-        String url = "jdbc:postgresql://localhost:5432/postgres";
-
-        Connection connection = DriverManager.getConnection(url, "postgres", "postgres");
 
 
         System.out.println("---------- Brendi secin: ----------");
@@ -30,7 +21,7 @@ public class Main {
         String brend = scan_brend.next();
 
 
-        System.out.println("--------- Modeli secin: ---------");   //-------------------MODEL--------------
+        System.out.println("--------- Modeli secin: ---------");
 
         Sql.selekt(brend, null, null, null, null, null, null);
 
@@ -76,9 +67,9 @@ public class Main {
         Scanner scan_gearbox = new Scanner(System.in);
         String auto_string = scan_gearbox.next();
 
-        char char_auto=auto_string.charAt(0);
+        char char_auto = auto_string.charAt(0);
 
-        boolean korobka=false;
+        boolean korobka = false;
 
         switch (char_auto) {
             case 'a':
@@ -124,36 +115,14 @@ public class Main {
         int probeq = scan_mileage.nextInt();
 
 
-
-        Boolean klassik= (Boolean) Sql.little(model,null,null,null);
-
-        System.out.println("Klassik metod-=== "+klassik);
+        Boolean klassik = (Boolean) Sql.little(model, null, null, null);
 
 
+        int hp = (int) Sql.little(model, year_string, motor, "hp");
 
-        int hp= (int) Sql.little(model,year_string,motor,"hp");
+        String fuel = (String) Sql.little(model, year_string, motor, "fuel");
 
-        String fuel= (String) Sql.little(model,year_string,motor,"fuel");
-
-
-
-
-        PreparedStatement insertcar = connection.prepareStatement("insert into barter.cars (brend,model,motor,kuzov,klassik,korobka,privod," +
-                "probeq,fuel,hp,year) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
-        insertcar.setString(1, brend);
-        insertcar.setString(2, model);
-        insertcar.setDouble(3, motor);
-        insertcar.setString(4, kuzov);
-        insertcar.setBoolean(5, klassik);
-        insertcar.setBoolean(6, korobka);
-        insertcar.setBoolean(7, awd);
-        insertcar.setInt(8, probeq);
-        insertcar.setString(9, fuel);
-        insertcar.setInt(10, hp);
-        insertcar.setInt(11, year);
-
-        insertcar.executeUpdate();
+        Sql.insert(brend, model, motor, kuzov, klassik, korobka, awd, probeq, fuel, hp, year);
 
 
         System.out.println("------------------------------------------------------------------------------------------------------------------------");
@@ -164,8 +133,6 @@ public class Main {
         while (true) {
             System.out.println("Govdesini daxil edin: ");
 
-            //    Scanner scan_body = new Scanner(System.in);
-            //   String cur_body = scan_body.next().toUpperCase();
 
             List<Body> bodyList = Arrays.asList(Body.values());
 
@@ -177,54 +144,16 @@ public class Main {
 
         System.out.println("Avtomobil dordceken sistemi ile techiz olunubsa, '+' daxil edin, eks halda '-' daxil edin.");
 
-//        Scanner scan_awd = new Scanner(System.in);
-//        char current_awd_scan = scan_awd.next().charAt(0);
-//
-//        boolean current_awd;
-//
-//        switch (current_awd_scan) {
-//            case '+':
-//                current_awd = true;
-//                break;
-//            case '-':
-//                current_awd = false;
-//                break;
-//            default:
-//                current_awd = false;
-//                System.out.println("Sehv secim.");
-//        }
-
 
         System.out.println("Avtomobilin qiymetini daxil edin:");
 
         Scanner scan_price = new Scanner(System.in);
         int current_price = scan_price.nextInt();
 
-//        System.out.println("Avtomobilin yurusunu daxil edin:");
-//
-//        Scanner scan_mileage = new Scanner(System.in);
-//        int probeq = scan_mileage.nextInt();
 
         System.out.println("Avtomobil suret qutusunu avtomatik yaxud mexaniki oldugunu qeyd edin." +
                 " Avtomtik oldugu teqdirde 'a' herfini, mexaniki 'm' herfini daxil edin.");
 
-
-        //    Scanner scan_gearbox = new Scanner(System.in);
-        //   char current_gearbox_scan = scan_gearbox.next().charAt(0);
-
-//        boolean current_gearbox;
-//
-//        switch (current_gearbox_scan) {
-//            case 'a':
-//                current_gearbox = true;
-//                break;
-//            case 'm':
-//                current_gearbox = false;
-//                break;
-//            default:
-//                current_gearbox = false;
-//                System.out.println("Sehv secim. Avtomobilin suret qutusu mexanika kimi qeyd olunacaq.");
-//        }
 
         FuelType current_fuel = null;
 
@@ -520,48 +449,14 @@ public class Main {
             }
         }
 
-
         Elan no1 = new Elan(new Brand(Volkswagen_Models.GOLF_GTI), 2015, 2.0,
                 Body.XETCHBEK, false, 27000, 152000, true, FuelType.GASOLINE,
                 new Barter(new Brand(Bmw_Models.e91), Body.UNIVERSAL, 3.0, false, FuelType.DIESEL),
                 new Barter(new Brand(Infiniti_Models.FX50), Body.SUV, 5.0, true, FuelType.GASOLINE),
                 new Barter(new Brand(Honda_Models.CIVIC), Body.XETCHBEK, 2.0, true, FuelType.GASOLINE));
 
-        Elan no2 = new Elan(new Brand(Audi_Models.A6), 2016, 3.0, Body.FASTBEK, true,
-                57000, 137500, true, FuelType.GASOLINE,
-                new Barter(new Brand(Audi_Models.ALLROAD_A6), Body.UNIVERSAL, 3.0, false, FuelType.DIESEL),
-                new Barter(new Brand(Audi_Models.S8), Body.SEDAN, 4.0, true, FuelType.GASOLINE));
 
-        Elan no3 = new Elan(new Brand(Toyota_Models.MAJESTA), 1998, 4.0, Body.SEDAN, true,
-                30000, 493523, true, FuelType.GASOLINE,
-                new Barter(new Brand(Infiniti_Models.M56), Body.SEDAN, 5.6, true, FuelType.GASOLINE),
-                new Barter(new Brand(Infiniti_Models.G37), Body.SEDAN, 3.7, true, FuelType.GASOLINE),
-                new Barter(new Brand(Infiniti_Models.EX37), Body.SUV, 3.7, true, FuelType.GASOLINE));
-
-        Elan no4 = new Elan(new Brand(Volvo_Models.XC70), 2014, 3.0, Body.UNIVERSAL,
-                true, 35000, 190000, true, FuelType.GASOLINE,
-                new Barter(new Brand(Volkswagen_Models.PASSAT), Body.UNIVERSAL, 2.0, true, FuelType.DIESEL));
-
-        Elan no5 = new Elan(new Brand(Volvo_Models.S80), 2010, 4.4, Body.SEDAN,
-                true, 22000, 280000, true, FuelType.GASOLINE,
-                new Barter(new Brand(Volvo_Models.V90), Body.UNIVERSAL, 2.0, true, FuelType.HYBRID));
-
-        Elan no7 = new Elan(new Brand(Bmw_Models.e53), 2005, 4.8, Body.SUV, true,
-                23500, 313000, true, FuelType.GASOLINE,
-                new Barter(new Brand(Toyota_Models.HIGHLANDER), Body.SUV, 3.5, true, FuelType.HYBRID),
-                new Barter(new Brand(Toyota_Models.LAND_CRUISER), Body.SUV, 4.5, true, FuelType.DIESEL));
-
-        Elan no6 = new Elan(new Brand(Honda_Models.CIVIC), 2014, 2.0, Body.XETCHBEK, false,
-                21000, 180000, true, FuelType.GASOLINE,
-                new Barter(new Brand(Volkswagen_Models.GOLF_GTI), Body.XETCHBEK, 2.0, true, FuelType.GASOLINE));
-
-        Elan no8 = new Elan(new Brand(Volkswagen_Models.GOLF_GTI), 2019, 2.0,
-                Body.XETCHBEK, false, 38000, 84000, true, FuelType.GASOLINE,
-                new Barter(new Brand(Bmw_Models.F20), Body.XETCHBEK, 3.0, true, FuelType.GASOLINE),
-                new Barter(new Brand(Toyota_Models.YARIS_GR), Body.XETCHBEK, 1.6, false, FuelType.GASOLINE),
-                new Barter(new Brand(Honda_Models.CIVIC), Body.XETCHBEK, 2.0, true, FuelType.GASOLINE));
-
-        List<Elan> elans = List.of(no1, no2, no3, no4, no5, no6, no7, no8);
+        List<Elan> elans = List.of(no1);
 
         List<Barter> yoursBarter = new ArrayList<>();
 
@@ -665,7 +560,6 @@ public class Main {
         }
         return your_brand;
     }
-
 }
 
 

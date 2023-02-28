@@ -76,6 +76,18 @@ public class Main {
         Scanner scan_gearbox = new Scanner(System.in);
         String auto_string = scan_gearbox.next();
 
+        char char_auto=auto_string.charAt(0);
+
+        boolean korobka=false;
+
+        switch (char_auto) {
+            case 'a':
+                korobka = true;
+                break;
+            case 'm':
+                korobka = false;
+                break;
+        }
 
         System.out.println("---------- Modelin shassi variantlari: ---------");
 
@@ -108,36 +120,22 @@ public class Main {
 
         System.out.println("Avtomobilin yurusunu daxil edin:");
 
-        Scanner scan_mileage = new Scanner(System.in);                   //  --------PROBEQ----------
+        Scanner scan_mileage = new Scanner(System.in);
         int probeq = scan_mileage.nextInt();
 
 
-        PreparedStatement statklassik = connection.prepareStatement("select distinct klassik from barter.x where model= ?");
-        statklassik.setString(1, model);
 
-        ResultSet resklassik = statklassik.executeQuery();
+        Boolean klassik= (Boolean) Sql.little(model,null,null,null);
 
-        boolean klassik = false;
-
-        while (resklassik.next()) {
-            klassik = resklassik.getBoolean("klassik");           // --------KLASSIK----------
-        }
-
-
-        PreparedStatement stathpf = connection.prepareStatement("select distinct hp,fuel from barter.x where model= ? and begin_year< ? " +
-                "and end_year> ? and value= ?");
+        System.out.println("Klassik metod-=== "+klassik);
 
 
 
-        ResultSet reshpf = stathpf.executeQuery();
+        int hp= (int) Sql.little(model,year_string,motor,"hp");
 
-        int hp = 0;
-        String fuel = null;
+        String fuel= (String) Sql.little(model,year_string,motor,"fuel");
 
-        while (reshpf.next()) {
-            hp = reshpf.getInt("hp");
-            fuel = reshpf.getString("fuel");
-        }
+
 
 
         PreparedStatement insertcar = connection.prepareStatement("insert into barter.cars (brend,model,motor,kuzov,klassik,korobka,privod," +
@@ -148,7 +146,7 @@ public class Main {
         insertcar.setDouble(3, motor);
         insertcar.setString(4, kuzov);
         insertcar.setBoolean(5, klassik);
-        // insertcar.setBoolean(6, korobka);
+        insertcar.setBoolean(6, korobka);
         insertcar.setBoolean(7, awd);
         insertcar.setInt(8, probeq);
         insertcar.setString(9, fuel);

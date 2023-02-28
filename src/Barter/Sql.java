@@ -109,4 +109,53 @@ public class Sql {
             }
         }
     }
+
+
+
+
+    public static Object little(String modell,String yearr, Double valuee,String indikator) throws SQLException, ParseException {
+        String sql = "select ";
+        if(valuee==null) sql+="distinct klassik from barter.x where model= ?";
+        else if (indikator.equals("hp")) sql+="distinct hp from barter.x where model= ? and begin_year< ? " +
+                "and end_year> ? and value= ?";
+        else if (indikator.equals("fuel")) sql+="distinct fuel from barter.x where model= ? and begin_year< ? " +
+                "and end_year> ? and value= ?";
+
+        PreparedStatement pstmt = connection.prepareStatement(sql);
+
+        int i = 1;
+
+        if(modell!=null) pstmt.setString(i++, modell);
+        if (yearr != null) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+            java.util.Date year_date = dateFormat.parse(yearr);
+
+            java.sql.Date sqlDate = new java.sql.Date(year_date.getTime());
+            pstmt.setDate(i++, sqlDate);
+            pstmt.setDate(i++, sqlDate);
+        }
+
+        if (valuee != null) pstmt.setDouble(i++, valuee);
+
+
+        ResultSet rs = pstmt.executeQuery();
+
+        Boolean klassik;
+
+        while (rs.next()) {
+            if(valuee==null){
+                klassik=rs.getBoolean("klassik");
+                return klassik;
+            }
+            else if (indikator.equals("hp")){
+                Integer hp=rs.getInt("hp");
+                return hp;
+            }
+            else if (indikator.equals("fuel")){
+                String fuel=rs.getString("fuel");
+                return fuel;
+            }
+        }
+       return null;
+    }
 }

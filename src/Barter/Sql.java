@@ -114,21 +114,19 @@ public class Sql {
     }
 
 
-
-
-    public static Object little(String modell,String yearr, Double valuee,String indikator) throws SQLException, ParseException {
+    public static Object little(String modell, String yearr, Double valuee, String indikator) throws SQLException, ParseException {
         String sql = "select ";
-        if(valuee==null) sql+="distinct klassik from barter.x where model= ?";
-        else if (indikator.equals("hp")) sql+="distinct hp from barter.x where model= ? and begin_year< ? " +
+        if (valuee == null) sql += "distinct klassik from barter.x where model= ?";
+        else if (indikator.equals("hp")) sql += "distinct hp from barter.x where model= ? and begin_year< ? " +
                 "and end_year> ? and value= ?";
-        else if (indikator.equals("fuel")) sql+="distinct fuel from barter.x where model= ? and begin_year< ? " +
+        else if (indikator.equals("fuel")) sql += "distinct fuel from barter.x where model= ? and begin_year< ? " +
                 "and end_year> ? and value= ?";
 
         PreparedStatement pstmt = connection.prepareStatement(sql);
 
         int i = 1;
 
-        if(modell!=null) pstmt.setString(i++, modell);
+        if (modell != null) pstmt.setString(i++, modell);
         if (yearr != null) {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             java.util.Date year_date = dateFormat.parse(yearr);
@@ -146,36 +144,33 @@ public class Sql {
         Boolean klassik;
 
         while (rs.next()) {
-            if(valuee==null){
-                klassik=rs.getBoolean("klassik");
+            if (valuee == null) {
+                klassik = rs.getBoolean("klassik");
                 return klassik;
-            }
-            else if (indikator.equals("hp")){
-                Integer hp=rs.getInt("hp");
+            } else if (indikator.equals("hp")) {
+                Integer hp = rs.getInt("hp");
                 return hp;
-            }
-            else if (indikator.equals("fuel")){
-                String fuel=rs.getString("fuel");
+            } else if (indikator.equals("fuel")) {
+                String fuel = rs.getString("fuel");
                 return fuel;
             }
         }
-       return null;
+        return null;
     }
 
 
-    public static Integer insert(String brend, String model, double motor,String kuzov, Boolean klassik,boolean korobka,boolean awd,
-                              int probeq,String fuel,int hp,int year,Integer cid) throws SQLException {
+    public static Integer insert(String brend, String model, double motor, String kuzov, Boolean klassik, boolean korobka, boolean awd,
+                                 int probeq, String fuel, int hp, int year, Integer cid) throws SQLException {
 
-        String sql="insert ";
+        String sql = "insert ";
 
         PreparedStatement insertcar;
 
-        if(cid==null) {
-            sql+="into barter.cars (brend,model,motor,kuzov,klassik,korobka,privod," +
+        if (cid == null) {
+            sql += "into barter.cars (brend,model,motor,kuzov,klassik,korobka,privod," +
                     "probeq,fuel,hp,year) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) returning id";
-            insertcar = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
-        }
-        else {
+            insertcar = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        } else {
             sql += "into barter.barters (brend,model,value,kuzov,klassik,korobka,privod," +
                     "probeq,fuel,hp,year,car_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
 
@@ -193,16 +188,38 @@ public class Sql {
         insertcar.setString(9, fuel);
         insertcar.setInt(10, hp);
         insertcar.setInt(11, year);
-        if(cid!=null)insertcar.setInt(12, cid);
+        if (cid != null) insertcar.setInt(12, cid);
 
         insertcar.executeUpdate();
 
-        if(cid==null){
-            ResultSet recid=insertcar.getGeneratedKeys();
-            if(recid.next()){
+        if (cid == null) {
+            ResultSet recid = insertcar.getGeneratedKeys();
+            if (recid.next()) {
                 return recid.getInt(1);
             }
         }
         return null;
+    }
+
+    public static void barter(String brendb, String modelb, String selek) throws SQLException {
+
+        String sql = "select distinct " + selek + " from barter.x";
+
+
+        if (modelb != null) sql += " where model= ?";
+        else if (brendb != null) sql += " where brend= ?";
+
+        PreparedStatement pstmt = connection.prepareStatement(sql);
+
+        if (modelb != null) pstmt.setString(1, modelb);
+
+        else if (brendb != null) pstmt.setString(1, brendb);
+
+        ResultSet rs = pstmt.executeQuery();
+
+        while (rs.next()) {
+            String s = rs.getString(selek);
+            System.out.println(s);
+        }
     }
 }

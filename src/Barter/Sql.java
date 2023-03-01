@@ -31,7 +31,7 @@ public class Sql {
 
         else if (brendd != null && modell == null) sql += "distinct model from barter.x where brend= ?";
 
-        else if (modell != null && year != null && valuee == null)
+        else if (year != null && valuee == null)
             sql += "distinct value from barter.x where model= ? and begin_year< ? " +
                     "and end_year> ?";
 
@@ -163,11 +163,24 @@ public class Sql {
     }
 
 
-    public static void insert(String brend, String model, double motor,String kuzov, Boolean klassik,boolean korobka,boolean awd,
-                              int probeq,String fuel,int hp,int year) throws SQLException {
+    public static Integer insert(String brend, String model, double motor,String kuzov, Boolean klassik,boolean korobka,boolean awd,
+                              int probeq,String fuel,int hp,int year,Integer cid) throws SQLException {
 
-        PreparedStatement insertcar = connection.prepareStatement("insert into barter.cars (brend,model,motor,kuzov,klassik,korobka,privod," +
-                "probeq,fuel,hp,year) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        String sql="insert ";
+
+        PreparedStatement insertcar;
+
+        if(cid==null) {
+            sql+="into barter.cars (brend,model,motor,kuzov,klassik,korobka,privod," +
+                    "probeq,fuel,hp,year) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) returning id";
+            insertcar = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+        }
+        else {
+            sql += "into barter.barters (brend,model,value,kuzov,klassik,korobka,privod," +
+                    "probeq,fuel,hp,year,car_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
+
+            insertcar = connection.prepareStatement(sql);
+        }
 
         insertcar.setString(1, brend);
         insertcar.setString(2, model);
@@ -180,7 +193,16 @@ public class Sql {
         insertcar.setString(9, fuel);
         insertcar.setInt(10, hp);
         insertcar.setInt(11, year);
+        if(cid!=null)insertcar.setInt(12, cid);
 
         insertcar.executeUpdate();
+
+        if(cid==null){
+            ResultSet recid=insertcar.getGeneratedKeys();
+            if(recid.next()){
+                return recid.getInt(1);
+            }
+        }
+        return null;
     }
 }

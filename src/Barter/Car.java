@@ -1,17 +1,19 @@
 package Barter;
 
+import com.yanvar5ders.B;
+
 import java.util.ArrayList;
 
 public class Car {
     String brend, model, kuzov, fuel;
-    int year, hp, probeq;
-    boolean korobka, awd, klassik;
-    double motor;
+    Integer year, hp, probeq;
+    Boolean korobka, awd, klassik;
+    Double motor;
 
     ArrayList<Car> barters=new ArrayList<>(2);
 
-    Car(String brend, String model, String kuzov, String fuel, int year, int hp, int probeq, boolean korobka, boolean awd, boolean klassik,
-        double motor, ArrayList<Car> barters) {
+    Car(String brend, String model, String kuzov, String fuel, Integer year, Integer hp, Integer probeq,
+        Boolean korobka, Boolean awd, Boolean klassik, Double motor, ArrayList<Car> barters) {
 
         this.brend = brend;
         this.model = model;

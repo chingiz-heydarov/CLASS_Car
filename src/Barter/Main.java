@@ -121,7 +121,7 @@ public class Main {
 
         String fuel = (String) Sql.little(model, year_string, motor, "fuel");
 
-        Integer car_id=Sql.insert(brend, model, motor, kuzov, klassik, korobka, awd, probeq, fuel, hp, year,null);     //       INSERT CAR
+        Integer car_id = Sql.insert(brend, model, motor, kuzov, klassik, korobka, awd, probeq, fuel, hp, year, null);     //       INSERT CAR
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -132,59 +132,75 @@ public class Main {
 
         System.out.println("Barter etmek ile istediyiniz avtomobilin brendini daxil edin. Brend secim elemek istemirsizde, 0 daxil edin.");     // BARTER-1
 
-       Sql.selekt(null, null, null, null, null, null, null);
+        Sql.selekt(null, null, null, null, null, null, null);
 
 
         Scanner scan_brendb = new Scanner(System.in);
         String barter_brend = scan_brendb.next();
 
-        if(barter_brend.equals("0")) barter_brend=null;
+
+        String barter_model = null;
+
+        if (barter_brend.equals("0")) barter_brend = null;
+
+        else {
+
+            System.out.println("--------- Modeli secin. Model secim elemek istemirsizde, 0 daxil edin. ---------");
+
+            // Sql.selekt(barter_brend, null, null, null, null, null, null);
+
+            Sql.barter(barter_brend, null, "model");
 
 
-        System.out.println("--------- Modeli secin. Model secim elemek istemirsizde, 0 daxil edin. ---------");
-
-       // Sql.selekt(barter_brend, null, null, null, null, null, null);
-
-        Sql.barter(barter_brend,null,"model");
+            Scanner scan_modelb = new Scanner(System.in);
+            barter_model = scan_modelb.next();
 
 
-        Scanner scan_modelb = new Scanner(System.in);
-        String barter_model = scan_modelb.next();
+            if (barter_model.equals("0")) barter_model = null;
 
-        if(barter_model.equals("0")) barter_model=null;
+        }
 
-        Sql.barter(barter_brend,barter_model,"value");
+        System.out.println("---------- Muherrikin hecmini secin. Muherrik secim elemek istemirsizde, 0 daxil edin. ----------");
 
-        System.out.println("--------- Istehsal ilini daxil edin: ---------");
+        Sql.barter(barter_brend, barter_model, "value,hp");
+
+        //  Sql.selekt(null, barter_model, null, null, barter_year_string, null, null);
+
+        Scanner scan_engineb = new Scanner(System.in);
+        Double barter_motor = scan_engineb.nextDouble();
+
+        if (barter_motor == 0) barter_motor = null;
+
+        System.out.println("--------- Minimal istehsal ilini daxil edin. Ilini secim elemek istemirsizde, 0 daxil edin. ---------");
 
         Scanner scan_yearb = new Scanner(System.in);
-        int barter_year = scan_yearb.nextInt();
+        Integer barter_year = scan_yearb.nextInt();
+
+        if (barter_year == 0) barter_year = null;
 
         String barter_year_string = "07-07-" + year;
 
-        System.out.println("---------- Muherrikin hecmini secin: ----------");
+        System.out.println("--------- Govdesini secin. Govdeni ecim elemek istemirsizde, 0 daxil edin. --------");
 
-      //  Sql.selekt(null, barter_model, null, null, barter_year_string, null, null);
+        //   Sql.selekt(null, barter_model, null, barter_motor, barter_year_string, null, null);
+        System.out.println("movcud olan kuzovlar:");
 
-        Scanner scan_engineb = new Scanner(System.in);
-        double barter_motor = scan_engineb.nextDouble();
-
-        System.out.println("--------- Govdesini daxil edin: --------");
-
-        Sql.selekt(null, barter_model, null, barter_motor, barter_year_string, null, null);
+        Sql.little(null, null, 0.0, "kuzov");
 
 
         Scanner scan_bodyb = new Scanner(System.in);
         String barter_kuzov = scan_bodyb.next();
 
-
-        System.out.println("--------- Modelde movcud olan karobka tipleri: ---------");
-
-        Sql.selekt(null, barter_model, barter_kuzov, barter_motor, barter_year_string, null, null);
+        if (barter_kuzov.equals("0")) barter_kuzov = null;
 
 
-        System.out.println("---------- Avtomobil suret qutusunu avtomatik yaxud mexaniki oldugunu qeyd edin." +
-                " Avtomtik oldugu teqdirde 'a' herfini, mexaniki 'm' herfini daxil edin. ----------");
+        // System.out.println("--------- Modelde movcud olan karobka tipleri: ---------");
+
+        // Sql.selekt(null, barter_model, barter_kuzov, barter_motor, barter_year_string, null, null);
+
+
+        System.out.println("---------- Modelin suret qutusunu avtomatik yaxud mexaniki oldugunu qeyd edin." +
+                " Avtomtik oldugu teqdirde 'a' herfini, mexaniki 'm' herfini daxil edin. Eks halda 0 secin. ----------");
 
 
         Scanner scan_gearboxb = new Scanner(System.in);
@@ -192,7 +208,7 @@ public class Main {
 
         char char_autob = barter_auto_string.charAt(0);
 
-        boolean barter_korobka = false;
+        Boolean barter_korobka = false;
 
         switch (char_autob) {
             case 'a':
@@ -201,14 +217,17 @@ public class Main {
             case 'm':
                 barter_korobka = false;
                 break;
+            case '0':
+                barter_korobka = null;
+                break;
         }
 
-        System.out.println("---------- Modelin shassi variantlari: ---------");
+        // System.out.println("---------- Modelin shassi variantlari: ---------");
 
-        Sql.selekt(null, barter_model, barter_kuzov, barter_motor, barter_year_string, barter_auto_string, null);
+        // Sql.selekt(null, barter_model, barter_kuzov, barter_motor, barter_year_string, barter_auto_string, null);
 
 
-        System.out.println("Avtomobil dordceken sistemi ile techiz olunubsa, '4' daxil edin, eks halda '2' daxil edin.");
+        System.out.println("Istediyiniz model dordceken sistemi ile techiz olunubsa, '4' daxil edin, eks halda '2' daxil edin. vacib deyilse, 0 secin.");
 
         Scanner scan_awdb = new Scanner(System.in);
 
@@ -217,7 +236,7 @@ public class Main {
 
         char barter_awd_char = barter_awd_string.charAt(0);
 
-        boolean barter_awd;
+        Boolean barter_awd;
 
         switch (barter_awd_char) {
             case '4':
@@ -227,8 +246,7 @@ public class Main {
                 barter_awd = false;
                 break;
             default: {
-                barter_awd = false;
-                System.out.println("Sehv secim.");
+                barter_awd = null;
             }
         }
 
@@ -237,16 +255,54 @@ public class Main {
         Scanner scan_mileageb = new Scanner(System.in);
         int barter_probeq = scan_mileageb.nextInt();
 
+        System.out.println("Arxa ceken tipli avtomobil secim etmek isteyirsizde, + daxil edin, on ceken - -. Vacib deyilse - 0 daxil edin.");
 
-        Boolean barter_klassik = (Boolean) Sql.little(barter_model, null, null, null);
+        Scanner scan_klassikb = new Scanner(System.in);
+
+        String klassikb_string = "" + scan_klassikb.next();
 
 
-        int barter_hp = (int) Sql.little(barter_model, barter_year_string, barter_motor, "hp");
+        char klassikb = klassikb_string.charAt(0);
 
-        String barter_fuel = (String) Sql.little(barter_model, barter_year_string, barter_motor, "fuel");
+        Boolean barter_klassik;
+
+        switch (klassikb) {
+            case '+':
+                barter_klassik = true;
+                break;
+            case '-':
+                barter_klassik = false;
+                break;
+            default: {
+                barter_klassik = null;
+            }
+        }
+
+
+        //  Boolean barter_klassik = (Boolean) Sql.little(barter_model, null, null, null);
+
+        System.out.println("Muherrikin minimal at gucunu daxil edin. Vacib deyilse, 0 daxil edin.");
+
+        //int barter_hp = (int) Sql.little(barter_model, barter_year_string, barter_motor, "hp");
+
+        Scanner scan_hpb = new Scanner(System.in);
+        Integer barter_hp = scan_hpb.nextInt();
+
+        if (barter_hp == 0) barter_hp = null;
+
+        System.out.println("Muherrikin yanacaq novunu secin. vacib deyilse, 0 daxil edin.");
+
+        Sql.barter(null, null, "fuel");
+
+        Scanner scan_fuelb = new Scanner(System.in);
+        String barter_fuel = scan_fuelb.next();
+
+        if (barter_fuel.equals("0")) barter_fuel = null;
+
+        // String barter_fuel = (String) Sql.little(barter_model, barter_year_string, barter_motor, "fuel");
 
         Sql.insert(barter_brend, barter_model, barter_motor, barter_kuzov, barter_klassik, barter_korobka, barter_awd,
-                barter_probeq, barter_fuel, barter_hp, barter_year,car_id);
+                barter_probeq, barter_fuel, barter_hp, barter_year, car_id);
 
 
         System.out.println("------------------------------------------------------------------------------------------------------------------------");

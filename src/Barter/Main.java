@@ -10,20 +10,16 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws SQLException, ParseException {
 
-
         System.out.println("---------- Brendi secin: ----------");
 
         Sql.selekt(null, null, null, null, null, null, null);
 
-
         Scanner scan_brend = new Scanner(System.in);
         String brend = scan_brend.next();
-
 
         System.out.println("--------- Modeli secin: ---------");
 
         Sql.selekt(brend, null, null, null, null, null, null);
-
 
         Scanner scan_model = new Scanner(System.in);
         String model = scan_model.next();
@@ -35,33 +31,26 @@ public class Main {
 
         String year_string = "07-07-" + year;
 
-
         System.out.println("---------- Muherrikin hecmini secin: ----------");
 
         Sql.selekt(null, model, null, null, year_string, null, null);
 
-
         Scanner scan_engine = new Scanner(System.in);
         double motor = scan_engine.nextDouble();
-
 
         System.out.println("--------- Govdesini daxil edin: --------");
 
         Sql.selekt(null, model, null, motor, year_string, null, null);
 
-
         Scanner scan_body = new Scanner(System.in);
         String kuzov = scan_body.next();
-
 
         System.out.println("--------- Modelde movcud olan karobka tipleri: ---------");
 
         Sql.selekt(null, model, kuzov, motor, year_string, null, null);
 
-
         System.out.println("---------- Avtomobil suret qutusunu avtomatik yaxud mexaniki oldugunu qeyd edin." +
                 " Avtomtik oldugu teqdirde 'a' herfini, mexaniki 'm' herfini daxil edin. ----------");
-
 
         Scanner scan_gearbox = new Scanner(System.in);
         String auto_string = scan_gearbox.next();
@@ -83,13 +72,11 @@ public class Main {
 
         Sql.selekt(null, model, kuzov, motor, year_string, auto_string, null);
 
-
         System.out.println("Avtomobil dordceken sistemi ile techiz olunubsa, '4' daxil edin, eks halda '2' daxil edin.");
 
         Scanner scan_awd = new Scanner(System.in);
 
         String awd_string = "" + scan_awd.next();
-
 
         char awd_char = awd_string.charAt(0);
 
@@ -113,9 +100,7 @@ public class Main {
         Scanner scan_mileage = new Scanner(System.in);
         int probeq = scan_mileage.nextInt();
 
-
         Boolean klassik = (Boolean) Sql.little(model, null, null, null);
-
 
         int hp = (int) Sql.little(model, year_string, motor, "hp");
 
@@ -134,37 +119,28 @@ public class Main {
 
         Sql.selekt(null, null, null, null, null, null, null);
 
-
         Scanner scan_brendb = new Scanner(System.in);
         String barter_brend = scan_brendb.next();
-
 
         String barter_model = null;
 
         if (barter_brend.equals("0")) barter_brend = null;
 
         else {
-
             System.out.println("--------- Modeli secin. Model secim elemek istemirsizde, 0 daxil edin. ---------");
 
-            // Sql.selekt(barter_brend, null, null, null, null, null, null);
-
             Sql.barter(barter_brend, null, "model");
-
 
             Scanner scan_modelb = new Scanner(System.in);
             barter_model = scan_modelb.next();
 
-
             if (barter_model.equals("0")) barter_model = null;
-
         }
 
         System.out.println("---------- Muherrikin hecmini secin. Muherrik secim elemek istemirsizde, 0 daxil edin. ----------");
 
         Sql.barter(barter_brend, barter_model, "value,hp");
 
-        //  Sql.selekt(null, barter_model, null, null, barter_year_string, null, null);
 
         Scanner scan_engineb = new Scanner(System.in);
         Double barter_motor = scan_engineb.nextDouble();
@@ -178,11 +154,10 @@ public class Main {
 
         if (barter_year == 0) barter_year = null;
 
-        String barter_year_string = "07-07-" + year;
 
         System.out.println("--------- Govdesini secin. Govdeni ecim elemek istemirsizde, 0 daxil edin. --------");
 
-        //   Sql.selekt(null, barter_model, null, barter_motor, barter_year_string, null, null);
+
         System.out.println("movcud olan kuzovlar:");
 
         Sql.little(null, null, 0.0, "kuzov");
@@ -192,11 +167,6 @@ public class Main {
         String barter_kuzov = scan_bodyb.next();
 
         if (barter_kuzov.equals("0")) barter_kuzov = null;
-
-
-        // System.out.println("--------- Modelde movcud olan karobka tipleri: ---------");
-
-        // Sql.selekt(null, barter_model, barter_kuzov, barter_motor, barter_year_string, null, null);
 
 
         System.out.println("---------- Modelin suret qutusunu avtomatik yaxud mexaniki oldugunu qeyd edin." +
@@ -221,10 +191,6 @@ public class Main {
                 barter_korobka = null;
                 break;
         }
-
-        // System.out.println("---------- Modelin shassi variantlari: ---------");
-
-        // Sql.selekt(null, barter_model, barter_kuzov, barter_motor, barter_year_string, barter_auto_string, null);
 
 
         System.out.println("Istediyiniz model dordceken sistemi ile techiz olunubsa, '4' daxil edin, eks halda '2' daxil edin. vacib deyilse, 0 secin.");
@@ -279,16 +245,15 @@ public class Main {
         }
 
 
-        //  Boolean barter_klassik = (Boolean) Sql.little(barter_model, null, null, null);
-
         System.out.println("Muherrikin minimal at gucunu daxil edin. Vacib deyilse, 0 daxil edin.");
 
-        //int barter_hp = (int) Sql.little(barter_model, barter_year_string, barter_motor, "hp");
 
         Scanner scan_hpb = new Scanner(System.in);
         Integer barter_hp = scan_hpb.nextInt();
 
         if (barter_hp == 0) barter_hp = null;
+
+        System.out.println(barter_hp);
 
         System.out.println("Muherrikin yanacaq novunu secin. vacib deyilse, 0 daxil edin.");
 
@@ -298,8 +263,6 @@ public class Main {
         String barter_fuel = scan_fuelb.next();
 
         if (barter_fuel.equals("0")) barter_fuel = null;
-
-        // String barter_fuel = (String) Sql.little(barter_model, barter_year_string, barter_motor, "fuel");
 
         Sql.insert(barter_brend, barter_model, barter_motor, barter_kuzov, barter_klassik, barter_korobka, barter_awd,
                 barter_probeq, barter_fuel, barter_hp, barter_year, car_id);
@@ -318,7 +281,7 @@ public class Main {
 
             for (Body kuzovd : bodyList) {
                 current_body = kuzovd;
-                if (kuzov.equals(kuzov.toString())) break outer;
+                if (kuzov.equals(kuzov)) break outer;
             }
         }
 

@@ -21,7 +21,7 @@ public class Sql {
         }
     }
 
-    public Sql() throws SQLException {
+    public Sql() {
     }
 
     public static void selekt(String brendd, String modell, String kuzovv, Double valuee, String year, String avto, String awdd) throws SQLException, ParseException {
@@ -117,7 +117,9 @@ public class Sql {
 
 
     public static Object little(String modell, String yearr, Double valuee, String indikator) throws SQLException, ParseException {
+
         String sql = "select ";
+
         if (valuee == null) sql += "distinct klassik from barter.x where model= ?";
         else if (indikator.equals("hp")) sql += "distinct hp from barter.x where model= ? and begin_year< ? " +
                 "and end_year> ? and value= ?";
@@ -140,7 +142,6 @@ public class Sql {
         }
 
         if (valuee != null && !(indikator.equals("kuzov"))) pstmt.setDouble(i++, valuee);
-
 
         ResultSet rs = pstmt.executeQuery();
 
@@ -168,9 +169,6 @@ public class Sql {
     public static Integer insert(String brend, String model, Double motor, String kuzov, Boolean klassik, Boolean korobka, Boolean awd,
                                  Integer probeq, String fuel, Integer hp, Integer year, Integer cid) throws SQLException {
 
-     //   System.out.println(brend+", "+model+", "+", "+motor+", "+fuel);
-
-
         String sql = "insert ";
 
         PreparedStatement insertcar;
@@ -186,52 +184,52 @@ public class Sql {
             insertcar = connection.prepareStatement(sql);
         }
 
-        List<Object> nul = List.of(brend, model, motor, kuzov, klassik, korobka, awd, probeq, fuel, hp, year);
+//        List<Object> nul = List.of(brend, model, motor, kuzov, klassik, korobka, awd, probeq, fuel, hp, year);
+//
+//        int i = 1;
+//
+//        for (Object z : nul) {
+//            if (z == null) insertcar.setNull(i, Types.JAVA_OBJECT);
+//            else {
+//                switch (i) {
+//                    case 1:
+//                    case 2:
+//                    case 4:
+//                    case 9:
+//                        insertcar.setString(i, (String) z);
+//                        break;
+//                    case 8:
+//                    case 10:
+//                    case 11:
+//                        insertcar.setInt(i, (Integer) z);
+//                        break;
+//                    case 5:
+//                    case 6:
+//                    case 7:
+//                        insertcar.setBoolean(i, (Boolean) z);
+//                        break;
+//                    case 3:
+//                        insertcar.setDouble(i, (Double) z);
+//                        break;
+//                }
+//            }
+//            i++;
+//        }
 
-        int i = 1;
 
-        for (Object z : nul) {
-            if (z == null) insertcar.setNull(i, Types.JAVA_OBJECT);
-
-            else {
-                switch (i) {
-                    case 1:
-                    case 2:
-                    case 4:
-                    case 9:
-                        insertcar.setString(i, (String) z);
-                        break;
-                    case 8:
-                    case 10:
-                    case 11:
-                        insertcar.setInt(i, (Integer) z);
-                        break;
-                    case 5:
-                    case 6:
-                    case 7:
-                        insertcar.setBoolean(i, (Boolean) z);
-                        break;
-                    case 3:
-                        insertcar.setDouble(i, (Double) z);
-                        break;
-                }
-            }
-            i++;
-        }
-
-
-//        insertcar.setString(1, brend);
-//        insertcar.setString(2, model);
-//        insertcar.setDouble(3, motor);
-//        insertcar.setString(4, kuzov);
-//        insertcar.setBoolean(5, Boolean.TRUE.equals(klassik));
-//        insertcar.setBoolean(6, Boolean.TRUE.equals(korobka));
-//        insertcar.setBoolean(7, Boolean.TRUE.equals(awd));
-//        insertcar.setInt(8, probeq);
-//        insertcar.setString(9, fuel);
-//        insertcar.setInt(10, hp);
-//        insertcar.setInt(11, year);
-
+        insertcar.setString(1, brend);
+        insertcar.setString(2, model);
+        insertcar.setDouble(3, motor);
+        insertcar.setString(4, kuzov);
+        insertcar.setBoolean(5, Boolean.TRUE.equals(klassik));
+        insertcar.setBoolean(6, Boolean.TRUE.equals(korobka));
+        insertcar.setBoolean(7, Boolean.TRUE.equals(awd));
+        insertcar.setInt(8, probeq);
+        insertcar.setString(9, fuel);
+        if (hp != null) insertcar.setInt(10, hp);
+        else insertcar.setNull(10, Types.INTEGER);
+        if (year != null) insertcar.setInt(11, year);
+        else insertcar.setNull(11, Types.INTEGER);
         if (cid != null) insertcar.setInt(12, cid);
 
         insertcar.executeUpdate();
